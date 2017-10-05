@@ -40,6 +40,7 @@ app.post(`/${apiVersion}/message/:language/:personality`, async function (req, r
                 response: response
             });
 
+            //TODO: De-dup with eventId
             db.none('INSERT INTO messages(message, classifier, derived, room_provider, room_id, event_id, time) VALUES(${message}, ${classifier}, ${derived}, ${room_provider}, ${room_id}, ${event_id}, ${time})', {
                     message: message,
                     classifier: config.api.version,
