@@ -1,0 +1,27 @@
+{
+  "name": "personality-server",
+  "version": "1.0.0",
+  "description": "This will serve the bots in an internal API, allowing for bots from other platforms to be very thin layers which 'translate' to this server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Polite-AI/personality-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Polite-AI/personality-server/issues"
+  },
+  "homepage": "https://github.com/Polite-AI/personality-server#readme",
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "express": "4.16.1",
+    "morgan": "1.9.0",
+    "pg-promise": "6.10.2",
+    "request": "2.83.0",
+    "request-promise-native": "1.0.5"
+  }
+}
