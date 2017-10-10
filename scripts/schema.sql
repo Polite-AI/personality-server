@@ -11,16 +11,14 @@ DROP SEQUENCE IF EXISTS room_seq;
 DROP SEQUENCE IF EXISTS class_seq;
 DROP SEQUENCE IF EXISTS appeal_seq;
 
--- Messages table:
--- message_id auto assigned ID for use when we reference from other tables
--- message: full printable text of message
--- classifier: ID of engine which was used to produce derived
--- derived: JSON object representing classification we received fomr the engine
--- corrected: Subsequent correction  based on human input
--- room_key: A large key that secures this room
--- room_provider: chat system ID e.g. 'matrix', 'slack' etc
--- room_id: ID of room, unique within namespace of room provider
 
+-- Rooms table:
+-- room_id: unique key
+-- provider: unique token for the the provider of the provider_id
+-- tuple of (provider, provider_id) should uniquely identify this room
+-- globally
+-- key is a secret which identifies this room locally
+-- time: time room created
 
 CREATE TABLE rooms (
     room_id BIGINT UNIQUE DEFAULT nextval('room_seq'::text),
@@ -30,7 +28,17 @@ CREATE TABLE rooms (
 	  time TIMESTAMP
 );
 
-
+-- Messages TABLE
+-- message_id: uniqur key
+-- message: message text in utf8
+-- provider: unique token for the the provider of the event_id
+-- room_id: reference to parent room_id [I think we may need something
+-- more sophisticated than this as a message may be in multiple rooms in some
+-- systems]
+-- user_id: ID of user that generated message as asserted by provider
+-- event_id: globally unique event ID within this provider tuple (provider, event_id)
+--   should be temporarily unique enougbh for at least replay detection
+-- time: time message received
 
 CREATE TABLE messages (
     message_id BIGINT UNIQUE DEFAULT nextval('message_seq'::text),
@@ -43,19 +51,37 @@ CREATE TABLE messages (
 
 );
 
+-- Classification TABLE
+-- class_id: unique key
+-- message_id: reference to message
+-- classifier: What classifier?
+-- classification: classifier output
+-- time: time classification processed
 
 CREATE TABLE classification (
     class_id BIGINT UNIQUE DEFAULT nextval('class_seq'::text),
     message_id BIGINT NOT NULL references messages(message_id),
     classifier TEXT,
-    classification TEXT
+    classification TEXT,
+    time TIMESTAMP
 );
+
+-- Appeals TABLE
+-- appeal_id: unique key
+-- message_id: reference to message
+-- user_id: Who challenged
+-- type: what was the challenge ('false-positive', 'false-negative')
+-- comment: user comment
+-- time: time classification processed
 
 CREATE TABLE appeals (
   appeal_id BIGINT UNIQUE DEFAULT nextval('appeal_seq'::text),
   message_id BIGINT NOT NULL references messages(message_id),
+  user_id TEXT,
   type TEXT NOT NULL,
-  comment TEXT NOT NULL
+  comment TEXT NOT NULL,
+  time TIMESTAMP
+
 
 );
 
