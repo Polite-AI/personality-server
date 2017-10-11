@@ -4,7 +4,7 @@
   "description": "This will serve the bots in an internal API, allowing for bots from other platforms to be very thin layers which 'translate' to this server.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap tests/*"
   },
   "repository": {
     "type": "git",
