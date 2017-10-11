@@ -237,6 +237,8 @@ test('Database tests: inserting and querying', (t) => {
 
   ]
 
+  // Iterate over phases and add the promise chain returned by each onto the end of one great big long
+  // Uber-promise that we hand back to the test infrastructure
   return phases.reduce((p, phase) => {
     return p.then(phase)
   }, Promise.resolve(true));
