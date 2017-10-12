@@ -37,12 +37,27 @@ messages = [{
     classy: {
       wikidetox: '{ something }',
       polite_ai: '{ something_else }'
-  },
-    appeal : [
-        {user: '@rob:matrix.org', type: 'report', text: 'this user is very abusive'},
-        {user: 'rob@ipcortex.co.uk', type: 'appeal', text: 'I don\'t think this is that bad TBH'},
-        {user: '@rob:matrix.org', type: 'appeal', text: 'this user is very bad \'; DROP DATABASE'},
-        {user: ';ldfkalksghlwkrlsrgioj;klsgjn;oijrspgoirj;aoiergjsdf;l@rob:matrix.org', type: 'appeal', text: 'this user is very abusive'},
+    },
+    appeal: [{
+        user: '@rob:matrix.org',
+        type: 'report',
+        text: 'this user is very abusive'
+      },
+      {
+        user: 'rob@ipcortex.co.uk',
+        type: 'appeal',
+        text: 'I don\'t think this is that bad TBH'
+      },
+      {
+        user: '@rob:matrix.org',
+        type: 'appeal',
+        text: 'this user is very bad \'; DROP DATABASE'
+      },
+      {
+        user: ';ldfkalksghlwkrlsrgioj;klsgjn;oijrspgoirj;aoiergjsdf;l@rob:matrix.org',
+        type: 'appeal',
+        text: 'this user is very abusive'
+      },
     ]
   },
   {
@@ -58,13 +73,28 @@ messages = [{
     classy: {
       wikidetox: '{ something }',
       polite_ai: '{ something_else }'
-  },
-  appeal : [
-      {user: '@rob:doeirmatrix.org', type: 'report', text: 'thil/kms;lasf;s user is very abusive'},
-      {user: 'rob@ipcort;lasdkex.co.uk', type: 'appeal', text: 'I don\'t think this is that bad TBH'},
-      {user: '@rob:matrix.org', type: 'appeal', text: 'this user is very ba DROP DATABASE'},
-      {user: ';ldfka;sdflkas;dfasdf;laksd;flkasd;fklsdf;l@rob:matrix.org', type: 'appeal', text: 'this user is very abusive'},
-  ]
+    },
+    appeal: [{
+        user: '@rob:doeirmatrix.org',
+        type: 'report',
+        text: 'thil/kms;lasf;s user is very abusive'
+      },
+      {
+        user: 'rob@ipcort;lasdkex.co.uk',
+        type: 'appeal',
+        text: 'I don\'t think this is that bad TBH'
+      },
+      {
+        user: '@rob:matrix.org',
+        type: 'appeal',
+        text: 'this user is very ba DROP DATABASE'
+      },
+      {
+        user: ';ldfka;sdflkas;dfasdf;laksd;flkasd;fklsdf;l@rob:matrix.org',
+        type: 'appeal',
+        text: 'this user is very abusive'
+      },
+    ]
 
   },
   {
@@ -198,18 +228,32 @@ test('Database tests: inserting and querying', (t) => {
     // 6: Add appeal data
     () => {
       return messages.reduce((p, message) => {
-        if(message.appeal != null)
-          message.appeal.forEach(appeal => {
-            p = p.then(() => {
-                return db.messageAppeal(message.message, appeal.type, appeal.text, appeal.user)
-              })
-              .then(row => t.assert(row.appeal_id > 0, 'appeal created'))
-              .catch(err => t.assert(message.classy.shouldFail != null, "Failed to appeal" + err.message))
-          })
-        return p;
-      }, Promise.resolve())
-    },
+            if(message.appeal != null)
+              message.appeal.forEach(appeal => {
+                p = p.then(() => {
+                    return db.messageAppeal(message.message, appeal.type, appeal.text, appeal.user)
+                  })
+                  .then(row => t.assert(row.appeal_id > 0, 'appeal created'))
+                  .catch(err => t.assert(message.classy.shouldFail != null, "Failed to appeal" + err.message))
+              });
+            return p;
+          },
+          Promise.resolve())
+        .then(() => {
+          return db.messageAppeal({
+            provider: 'foobar',
+            event_id: 'eventything'
+          }, 'foo', 'baz', 'bar')
+        })
+        .then(row => t.fail('bad message should have failed'))
+        .catch(err => t.pass("bad message failed to appeal" + err.message))
+        .then(() => {
+          return db.messageAppeal(messages[0].message, 'foo')
+        })
+        .then(row => t.fail('bad appeal (no data) should have failed'))
+        .catch(err => t.pass("bad data failed to appeal" + err.message))
 
+    },
 
     // 7: Delete all the messages
     () => {
@@ -241,6 +285,6 @@ test('Database tests: inserting and querying', (t) => {
   // Uber-promise that we hand back to the test infrastructure
   return phases.reduce((p, phase) => {
     return p.then(phase)
-  }, Promise.resolve(true));
+}, Promise.resolve(true)).then(t.end());
 
 })
