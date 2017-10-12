@@ -9,107 +9,7 @@ const _test = require('tape-promise')
 const test = _test(tape) // decorate tape
 // Initial connection
 
-messages = [{
-    room: {
-      provider: 'matrix',
-      provider_id: '#test:polite.ai'
-    },
-    message: {
-      text: 'you stink',
-      event_id: '1234560xdeadbeef!!:L!K":LK!"":polite.ai',
-      user: '@rob:polite.ai'
-    },
-    classy: {
-      wikidetox: '{ something }',
-      polite_ai: '{ something_else }'
-    }
-  },
-  {
-    room: {
-      provider: 'matriX',
-      provider_id: '#test:Polite.ai'
-    },
-    message: {
-      text: 'you may smell a bit old man',
-      event_id: '1234860xdeadbeef!!:L!K":LK!"":polite.ai',
-      user: '@rob:polite.ai'
-    },
-    classy: {
-      wikidetox: '{ something }',
-      polite_ai: '{ something_else }'
-    },
-    appeal: [{
-        user: '@rob:matrix.org',
-        type: 'report',
-        text: 'this user is very abusive'
-      },
-      {
-        user: 'rob@ipcortex.co.uk',
-        type: 'appeal',
-        text: 'I don\'t think this is that bad TBH'
-      },
-      {
-        user: '@rob:matrix.org',
-        type: 'appeal',
-        text: 'this user is very bad \'; DROP DATABASE'
-      },
-      {
-        user: ';ldfkalksghlwkrlsrgioj;klsgjn;oijrspgoirj;aoiergjsdf;l@rob:matrix.org',
-        type: 'appeal',
-        text: 'this user is very abusive'
-      },
-    ]
-  },
-  {
-    room: {
-      provider: 'slack',
-      provider_id: '#geneta@techub.slack.com'
-    },
-    message: {
-      text: 'you slionk',
-      event_id: '123adfas4560xdeadbeef!!:L!K":LK!"":techub.slack.com',
-      user: 'rob@pickering.org'
-    },
-    classy: {
-      wikidetox: '{ something }',
-      polite_ai: '{ something_else }'
-    },
-    appeal: [{
-        user: '@rob:doeirmatrix.org',
-        type: 'report',
-        text: 'thil/kms;lasf;s user is very abusive'
-      },
-      {
-        user: 'rob@ipcort;lasdkex.co.uk',
-        type: 'appeal',
-        text: 'I don\'t think this is that bad TBH'
-      },
-      {
-        user: '@rob:matrix.org',
-        type: 'appeal',
-        text: 'this user is very ba DROP DATABASE'
-      },
-      {
-        user: ';ldfka;sdflkas;dfasdf;laksd;flkasd;fklsdf;l@rob:matrix.org',
-        type: 'appeal',
-        text: 'this user is very abusive'
-      },
-    ]
-
-  },
-  {
-    room: {
-      provider: 'matrix',
-      provider_id: '#test:polite.ai'
-    },
-    message: {
-      text: 'you stink',
-      event_id: '1234560xdeadbeef!!:L!K":LK!"":polite.ai',
-      user: '@rob:polite.ai'
-    },
-    shouldFail: "dup"
-  }
-];
+const messages = require('./message-testdata.js')
 
 test('Database tests: inserting and querying', (t) => {
 
@@ -119,6 +19,9 @@ test('Database tests: inserting and querying', (t) => {
   /*
    * We need to do these tests in order as we will initialise the database, populate it,
    * then query and each test phase builds on the previous one in one huge promise forest.
+   *
+   * Tape isn't great for doing serialised promises with clarity,
+   * but it is a lot simpler in other areas so we persist.
    *
    */
   phases = [
@@ -207,19 +110,31 @@ test('Database tests: inserting and querying', (t) => {
             .then(row => t.fail("Got message but didn't supply enough info"))
             .catch(err => t.assert(err.message.match(/not enough info/i), "Failed to get message when we didn't have enough info"));
         })
+        .then(() => {
+          return db.messageGet(null, messages[0].room)
+            .then(row => t.assert(row && row.length == 2, "Got two messages by room ID "))
+            .catch(err => t.fail(err));
+        })
+        .then(() => {
+          return db.messageGet(null, {
+              id: 1
+            })
+            .then(row => t.fail("Should get no messages for bad room ID"))
+            .catch(err => t.pass("No messages for fake room ID: " + err.message));
+        });
     },
 
     // 5: Add classification data
     () => {
       return messages.reduce((p, message) => {
-        if(message.classy != null)
+        if(message.classy != null && message.shouldFail == null)
           Object.keys(message.classy)
           .forEach(c => {
             p = p.then(() => {
                 return db.messageClassify(message.message, c, message.classy[c])
               })
               .then(row => t.assert(row.class_id > 0, 'class created'))
-              .catch(err => t.assert(message.classy.shouldFail != null, "Failed to classify" + err.message))
+              .catch(err => t.fail("Failed to classify: " + err.message))
           })
         return p;
       }, Promise.resolve())
@@ -228,13 +143,13 @@ test('Database tests: inserting and querying', (t) => {
     // 6: Add appeal data
     () => {
       return messages.reduce((p, message) => {
-            if(message.appeal != null)
-              message.appeal.forEach(appeal => {
+            if(message.apps != null && message.shouldFail == null)
+              message.apps.forEach(appeal => {
                 p = p.then(() => {
                     return db.messageAppeal(message.message, appeal.type, appeal.text, appeal.user)
                   })
                   .then(row => t.assert(row.appeal_id > 0, 'appeal created'))
-                  .catch(err => t.assert(message.classy.shouldFail != null, "Failed to appeal" + err.message))
+                  .catch(err => t.fail("Failed to appeal: " + err.message))
               });
             return p;
           },
@@ -250,25 +165,44 @@ test('Database tests: inserting and querying', (t) => {
         .then(() => {
           return db.messageAppeal(messages[0].message, 'foo')
         })
-        .then(row => t.fail('bad appeal (no data) should have failed'))
-        .catch(err => t.pass("bad data failed to appeal" + err.message))
+        .then(row => t.fail('bad appeal (no data) should have failed: '))
+        .catch(err => t.pass("bad data failed to appeal: " + err.message))
 
     },
 
-    // 7: Delete all the messages
+    // 7 Query for allData
+    () => {
+      return messages.reduce((p, message) => {
+        return p.then(() => {
+            return db.messageGet({
+              id: message.message.id
+            }, null, {
+              allData: true
+            })
+          })
+          .then(row => {
+            t.assert((message.classy == null || message.classy.length == row.classification.length) &&
+              (message.apps == null || message.apps.length == row.appeals.length),
+              " Got full message with classifications and appeals")
+          })
+          .catch(err => t.fail(err));
+      }, Promise.resolve())
+    },
+
+    // 8: Delete all the messages
     () => {
       return messages.reduce((p, message) => {
         return p.then(() => {
             return db.messageDestroy(message.message)
           })
           .then(row => t.assert(message.shouldFail == null, "Deleted record " + message.message.id))
-          .catch(err => t.assert(message.shouldFail != null, "Failed to delete" + err.message))
+          .catch(err => t.assert(message.shouldFail != null, "Failed to delete: " + err.message))
 
         ;
       }, Promise.resolve())
     },
 
-    // 8: Check they are Gone
+    // 9: Check they are Gone
     () => {
       return messages.reduce((p, message) => {
         return p.then(() => {
@@ -284,7 +218,8 @@ test('Database tests: inserting and querying', (t) => {
   // Iterate over phases and add the promise chain returned by each onto the end of one great big long
   // Uber-promise that we hand back to the test infrastructure
   return phases.reduce((p, phase) => {
-    return p.then(phase)
-}, Promise.resolve(true)).then(t.end());
+      return p.then(phase)
+    }, Promise.resolve(true))
+    .then(t.end());
 
 })

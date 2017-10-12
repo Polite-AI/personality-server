@@ -1,0 +1,127 @@
+module.exports = [{
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'you stink',
+      event_id: '1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+    classy: [{
+      classifier: 'wikidetox',
+      classification: '{"aggression": "0", "attack": "1", "toxicity": "0"}"'
+    }]
+  },
+  {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'something nice',
+      event_id: '12345ffxdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    }
+  },
+  {
+    room: {
+      provider: 'matriX',
+      provider_id: '#test:Polite.ai'
+    },
+    message: {
+      text: 'you may smell a bit old man',
+      event_id: '1234860xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+    classy: [{
+        classifier: 'wikidetox',
+        classification: '{"aggression": "1", "attack": "1", "toxicity": "1"}"'
+      },
+      {
+        classifier: 'polite_ai',
+        classification: '{"positivity": "1", "neutraility": "1", "bogosity": "1"}"'
+      }
+
+    ],
+    apps: [{
+        user: '@rob:matrix.org',
+        type: 'report',
+        text: 'this user is very abusive'
+      },
+      {
+        user: 'rob@ipcortex.co.uk',
+        type: 'appeal',
+        text: 'I don\'t think this is that bad TBH'
+      },
+      {
+        user: '@rob:matrix.org',
+        type: 'appeal',
+        text: 'this user is very bad \'; DROP DATABASE'
+      },
+      {
+        user: ';ldfkalksghlwkrlsrgioj;klsgjn;oijrspgoirj;aoiergjsdf;l@rob:matrix.org',
+        type: 'appeal',
+        text: 'this user is very abusive'
+      },
+    ]
+  },
+  {
+    room: {
+      provider: 'slack',
+      provider_id: '#geneta@techub.slack.com'
+    },
+    message: {
+      text: 'you slionk',
+      event_id: '123adfas4560xdeadbeef!!:L!K":LK!"":techub.slack.com',
+      user: 'rob@pickering.org'
+    },
+    classy: [{
+        classifier: 'wikidetox',
+        classification: '{"aggression": "0", "attack": "1", "toxicity": "1"}"'
+      },
+      {
+        classifier: 'polite_ai',
+        classification: '{"positivity": "10", "neutraility": "12", "bogosity": "14"}"'
+      },
+      {
+        classifier: 'polite_ai',
+        classification: '{"aggression": "0", "attack": "1", "toxicity": "1"}"'
+      }
+    ],
+    apps: [{
+        user: '@rob:doeirmatrix.org',
+        type: 'report',
+        text: 'thil/kms;lasf;s user is very abusive'
+      },
+      {
+        user: 'rob@ipcort;lasdkex.co.uk',
+        type: 'appeal',
+        text: 'I don\'t think this is that bad TBH'
+      },
+      {
+        user: '@rob:matrix.org',
+        type: 'appeal',
+        text: 'this user is very ba DROP DATABASE'
+      },
+      {
+        user: ';ldfka;sdflkas;dfasdf;laksd;flkasd;fklsdf;l@rob:matrix.org',
+        type: 'appeal',
+        text: 'this user is very abusive'
+      },
+    ]
+
+  },
+  {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'you stink',
+      event_id: '1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+    shouldFail: "dup"
+  }
+];
