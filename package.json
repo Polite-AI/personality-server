@@ -4,7 +4,7 @@
   "description": "This will serve the bots in an internal API, allowing for bots from other platforms to be very thin layers which 'translate' to this server.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap tests/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,10 @@
     "pg-promise": "6.10.2",
     "request": "2.83.0",
     "request-promise-native": "1.0.5"
+  },
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "path": "0.12.7",
+    "tape": "4.8.0"
   }
 }
