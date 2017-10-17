@@ -5,7 +5,7 @@ module.exports = [{
     },
     message: {
       text: 'you stink',
-      event_id: '1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      event_id: '1-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
       user: '@rob:polite.ai'
     },
     classy: [{
@@ -118,10 +118,108 @@ module.exports = [{
       provider_id: '#test:polite.ai'
     },
     message: {
-      text: 'you stink',
-      event_id: '1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      text: 'message 2 in first room',
+      event_id: '2-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
       user: '@rob:polite.ai'
     },
-    shouldFail: "dup"
+  },
+  {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'message 3 in first room',
+      event_id: '3-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+  },
+  {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'message 4 in first room',
+      event_id: '4-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+  },
+  {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'message 5 in first room',
+      event_id: '5-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+  },
+  {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'message 6 in first room',
+      event_id: '6-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+  },
+  {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'message 7 in first room',
+      event_id: '7-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+  }, {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'message 8 in first room',
+      event_id: '8-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+  }, {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'message 9 in first room',
+      event_id: '9-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
+  },
+  {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'message 10 in first room',
+      event_id: '10-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+
+    }
+  },
+  {
+    room: {
+      provider: 'matrix',
+      provider_id: '#test:polite.ai'
+    },
+    message: {
+      text: 'message 11 in first room',
+      event_id: '11-1234560xdeadbeef!!:L!K":LK!"":polite.ai',
+      user: '@rob:polite.ai'
+    },
   }
+
 ];

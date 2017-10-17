@@ -1,6 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-const database = require('../lib/database.js');
+const database = require('../lib/database.js').Database;
 const config = require('../config.js');
 var db
 const tape = require('tape')
@@ -9,12 +7,14 @@ const _test = require('tape-promise')
 const test = _test(tape) // decorate tape
 // Initial connection
 
-const messages = require('./message-testdata.js')
+const messages = require('./message-testdata.js');
+
+//console.log('messages: ', messages)
 
 test('Database tests: inserting and querying', (t) => {
 
   t.comment('Using' + JSON.stringify(config.postgres));
-  db = new database(config.postgres);
+  db = new database(config.postgres, Object);
 
   /*
    * We need to do these tests in order as we will initialise the database, populate it,
@@ -35,9 +35,11 @@ test('Database tests: inserting and querying', (t) => {
     // 2 load contents
     () => {
       return messages.reduce((p, message) => {
+          //console.log ('insert: ' , message);
         return p.then(() => {
           return db.messageInsert(message.message, message.room)
             .then(row => {
+                //console.log ('insert: ' , "Insert suceeded ");
               t.assert(message.shouldFail == null, "Insert suceeded ");
               return message;
             })
@@ -112,7 +114,17 @@ test('Database tests: inserting and querying', (t) => {
         })
         .then(() => {
           return db.messageGet(null, messages[0].room)
-            .then(row => t.assert(row && row.length == 2, "Got two messages by room ID "))
+            .then(row => t.assert(row && row.length == 10, "Got limited ("+row.length+") messages by room ID "))
+            .catch(err => t.fail(err));
+        })
+        .then(() => {
+          return db.messageGet(null, messages[0].room, {offset:11})
+            .then(row => t.assert(row && row.length == 1, "Got ("+row.length+") leftover message of 11 by room ID "))
+            .catch(err => t.fail(err));
+        })
+        .then(() => {
+          return db.messageGet(null, messages[0].room, {limit:11})
+            .then(row => t.assert(row && row.length == 11, "Got ("+row.length+") messages by room ID "))
             .catch(err => t.fail(err));
         })
         .then(() => {
@@ -140,7 +152,7 @@ test('Database tests: inserting and querying', (t) => {
       }, Promise.resolve())
     },
 
-    // 6: Add appeal data
+    // 6: Add apeal data
     () => {
       return messages.reduce((p, message) => {
             if(message.apps != null && message.shouldFail == null)
@@ -173,6 +185,7 @@ test('Database tests: inserting and querying', (t) => {
     // 7 Query for allData
     () => {
       return messages.reduce((p, message) => {
+
         return p.then(() => {
             return db.messageGet({
               id: message.message.id
@@ -181,11 +194,17 @@ test('Database tests: inserting and querying', (t) => {
             })
           })
           .then(row => {
-            t.assert((message.classy == null || message.classy.length == row.classification.length) &&
-              (message.apps == null || message.apps.length == row.appeals.length),
-              " Got full message with classifications and appeals")
+            //t.comment(JSON.stringify(row,null,4))
+
+            t.assert((message.classy == null || (row.classification && message.classy.length == row.classification.length)) &&
+              (message.apps == null || (row.appeals && message.apps.length == row.appeals.length)),
+              " Got full message with classifications and appeals expected ("
+              +((message.classy != null)?message.classy.length:0) + ", "
+              +((message.apps != null)?message.apps.length:0) + ") got ("
+              +((row.classification != null)?row.classification.length:0) + ", "
+              +((row.appeals != null)?row.appeals.length:0) + ")");
           })
-          .catch(err => t.fail(err));
+          .catch(err => t.fail("Classifications: "+err.message+JSON.stringify(message,null,4)));
       }, Promise.resolve())
     },
 
