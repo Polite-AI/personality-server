@@ -1,6 +1,13 @@
 const config = require('./config.js');
 const request = require('request-promise-native');
 
+/**
+ * Description
+ * @method exports
+ * @param {} text
+ * @param {} language
+ * @return CallExpression
+ */
 module.exports = async function (text, language) {
     return request.post({
         method: 'POST',
