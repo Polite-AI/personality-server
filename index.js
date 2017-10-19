@@ -1,14 +1,14 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const pgp = require('pg-promise')();
 
 const package = require('./package.json');
 const config = require('./config.js');
-const classifyMessage = require('lib/classifyMessage.js');
-const getResponseForClassification = require('lib/respondToClassification.js');
+const classifyMessage = require('./lib/classifyMessage.js');
+const getResponseForClassification = require('./lib/respondToClassification.js');
+const Message = require('./lib/message.js').Message;
+const Room = require('./lib/message.js').Room;
 
-const db = pgp(config.postgres);
 const app = express();
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
@@ -23,6 +23,7 @@ app.post(`/${apiVersion}/message/:language/:personality`, async function (req, r
       provider,
       roomId,
       eventId,
+      userId,
       eventTime
     } = req.body;
     const {
@@ -33,8 +34,8 @@ app.post(`/${apiVersion}/message/:language/:personality`, async function (req, r
     var message = new Message(text, provider, roomId, eventId, userId, eventTime, {
       allData: true
     })
-    const status = await message.status();
-    const exists = await message.exists();
+    const status = await message.status;
+    const exists = await message.exists;
 
     var response = null;
 
@@ -42,7 +43,7 @@ app.post(`/${apiVersion}/message/:language/:personality`, async function (req, r
       throw new Error('malformed message')
 
     if(!exists) {
-      const classification = await classifyMessage(message, language);
+      const classification = await classifyMessage(text, language);
       message.classify('wiki-detox-1.0', classification);
 
       const positiveResults = Object.keys(classification)
@@ -52,19 +53,24 @@ app.post(`/${apiVersion}/message/:language/:personality`, async function (req, r
         response = getResponseForClassification(language, personality, classification);
 
     }
-    res.status(200)
-      .send((response) ? {
+    res.setHeader('Content-Type', 'application/json');
+     res.status(200)
+      .send((response) ? JSON.stringify({
           response: response
-        } :
+      }) :
         null);
   } catch(err) {
     console.error(err);
     res.status(500)
-      .send({
-        error: err.message
-      });
+      .send(JSON.stringify({
+        response: err
+    }));
   };
 
 });
 
-app.listen(8081);
+if (require.main === module) {
+    app.listen(8081);
+}
+
+exports = module.exports = app;
