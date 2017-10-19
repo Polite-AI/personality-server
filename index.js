@@ -5,8 +5,8 @@ const pgp = require('pg-promise')();
 
 const package = require('./package.json');
 const config = require('./config.js');
-const classifyMessage = require('./classifyMessage.js');
-const getResponseForClassification = require('./respondToClassification.js');
+const classifyMessage = require('lib/classifyMessage.js');
+const getResponseForClassification = require('lib/respondToClassification.js');
 
 const db = pgp(config.postgres);
 const app = express();
@@ -17,51 +17,54 @@ app.use(bodyParser.json());
 const apiVersion = 'v' + package.version.split('.')[0];
 
 app.post(`/${apiVersion}/message/:language/:personality`, async function (req, res) {
-    try {
-        const {
-            message,
-            sourceId,
-            roomId,
-            eventId,
-            eventTime
-        } = req.body;
-        const {
-            language,
-            personality
-        } = req.params;
+  try {
+    const {
+      text,
+      provider,
+      roomId,
+      eventId,
+      eventTime
+    } = req.body;
+    const {
+      language,
+      personality
+    } = req.params;
 
-        const classification = await classifyMessage(message, language);
+    var message = new Message(text, provider, roomId, eventId, userId, eventTime, {
+      allData: true
+    })
+    const status = await message.status();
+    const exists = await message.exists();
 
-        const positiveResults = Object.keys(classification).filter(key => Number(classification[key]));
+    var response = null;
 
-        if (positiveResults.length) {
-            const response = getResponseForClassification(language, personality, classification);
-            res.status(200).send({
-                response: response
-            });
+    if(!status)
+      throw new Error('malformed message')
 
-            //TODO: De-dup with eventId
-            db.none('INSERT INTO messages(message, classifier, derived, room_provider, room_id, event_id, time) VALUES(${message}, ${classifier}, ${derived}, ${room_provider}, ${room_id}, ${event_id}, ${time})', {
-                    message: message,
-                    classifier: config.api.version,
-                    derived: JSON.stringify(classification),
-                    room_provider: sourceId,
-                    room_id: roomId,
-                    event_id: eventId,
-                    time: new Date(eventTime)
-                })
-                .catch(err => {
-                    console.error(`DB Error`, err);
-                });
+    if(!exists) {
+      const classification = await classifyMessage(message, language);
+      message.classify('wiki-detox-1.0', classification);
 
-        } else {
-            res.status(200).send(null);
-        }
-    } catch (err) {
-        console.error(err);
-        res.status(400).send({
-            error: err.message
-        });
-    };
-})
+      const positiveResults = Object.keys(classification)
+        .filter(key => Number(classification[key]));
+
+      if(positiveResults.length)
+        response = getResponseForClassification(language, personality, classification);
+
+    }
+    res.status(200)
+      .send((response) ? {
+          response: response
+        } :
+        null);
+  } catch(err) {
+    console.error(err);
+    res.status(500)
+      .send({
+        error: err.message
+      });
+  };
+
+});
+
 app.listen(8081);
