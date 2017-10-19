@@ -17,7 +17,7 @@ messages.forEach(message => {
           roomId: message.room.provider_id,
           eventId: message.message.event_id,
           eventTime: new Date(),
-          user: message.message.user_id
+          userId: message.message.user
       }
       request(app)
         .post(`/${apiVersion}/message/english/standard`)
