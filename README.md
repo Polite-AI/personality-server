@@ -2,6 +2,11 @@
 
 This will serve the bots in an internal API, allowing for bots from other platforms to be very thin layers which 'translate' to this server.
 
+## Library documentation
+[Class Library Documentation][36f6b0c5]
+
+  [36f6b0c5]: docs.md "Docs"
+
 ## Installation
 
 You will need to edit config.js to include details of your Postgres database credentials.

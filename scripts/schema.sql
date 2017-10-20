@@ -89,4 +89,6 @@ CREATE SEQUENCE message_seq start 100 increment 1 cache 20;
 CREATE SEQUENCE class_seq start 100 increment 1 cache 20;
 CREATE SEQUENCE appeal_seq start 100 increment 1 cache 20;
 CREATE SEQUENCE room_seq start 100 increment 1 cache 20;
+
+CREATE EXTENSION pgcrypto;  
 COMMIT;
