@@ -400,12 +400,12 @@ selected and handles the mechanics of calling that engine.
 **Kind**: global class  
 
 * [Classify](#Classify)
-    * [new module.exports.Classify(classifier)](#new_Classify_new)
+    * [new Classify(classifier)](#new_Classify_new)
     * [.classify(text, lang)](#Classify+classify) ⇒ <code>Promise.&lt;Object&gt;</code>
 
 <a name="new_Classify_new"></a>
 
-### new module.exports.Classify(classifier)
+### new Classify(classifier)
 Create a classifier
 
 **Throws**:
