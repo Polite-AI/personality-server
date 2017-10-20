@@ -132,10 +132,11 @@ Get a list of Message objects associated with a room
 <a name="Room.getList"></a>
 
 ### Room.getList(provider, [partial_id]) ⇒ <code>Promise.&lt;Array.&lt;Room&gt;&gt;</code>
-returns a list of Rooms in the database
+Get a list of Rooms in the database
 
 **Kind**: static method of [<code>Room</code>](#Room)  
-**Returns**: <code>Promise.&lt;Array.&lt;Room&gt;&gt;</code> - Resolves to an Array of Room objects or rejects if no match spec  
+**Returns**: <code>Promise.&lt;Array.&lt;Room&gt;&gt;</code> - Resolves to an Array of Room objects or rejects if no match based on the
+specified search criteria  
 
 | Param | Type | Description |
 | --- | --- | --- |
