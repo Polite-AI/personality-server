@@ -368,6 +368,11 @@ languages/[language].json
 ### new Language(language, personality)
 Initialises a language outputter based on language and personality required
 
+**Throws**:
+
+- <code>Error</code> If the language pack doesn't exist in this implementation, or
+  the personality requested doesn't exist within the language pack.
+
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -401,7 +406,11 @@ selected and handles the mechanics of calling that engine.
 <a name="new_Classify_new"></a>
 
 ### new module.exports.Classify(classifier)
-Create an classifier
+Create a classifier
+
+**Throws**:
+
+- <code>Error</code> if the classifier name doesn't exist in this implementation
 
 
 | Param | Type | Default | Description |
