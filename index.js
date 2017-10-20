@@ -4,10 +4,15 @@ const bodyParser = require('body-parser');
 
 const package = require('./package.json');
 const config = require('./config.js');
-const classifyMessage = require('./lib/classifyMessage.js');
-const getResponseForClassification = require('./lib/respondToClassification.js');
-const Message = require('./lib/message.js').Message;
-const Room = require('./lib/message.js').Room;
+
+const Classify = require('./lib/classify.js')
+  .Classify;
+const Language = require('./lib/language.js')
+  .Language;
+const Message = require('./lib/message.js')
+  .Message;
+const Room = require('./lib/message.js')
+  .Room;
 
 const app = express();
 
@@ -16,7 +21,7 @@ app.use(bodyParser.json());
 
 const apiVersion = 'v' + package.version.split('.')[0];
 
-app.post(`/${apiVersion}/message/:language/:personality`, async function (req, res) {
+app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async function (req, res) {
   try {
     const {
       text,
@@ -27,9 +32,12 @@ app.post(`/${apiVersion}/message/:language/:personality`, async function (req, r
       eventTime
     } = req.body;
     const {
+      classifierName,
       language,
       personality
     } = req.params;
+
+    const classifier = new Classify(classifierName);
 
     var message = new Message(text, provider, roomId, eventId, userId, eventTime, {
       allData: true
@@ -43,34 +51,39 @@ app.post(`/${apiVersion}/message/:language/:personality`, async function (req, r
       throw new Error('malformed message')
 
     if(!exists) {
-      const classification = await classifyMessage(text, language);
-      message.classify('wiki-detox-1.0', classification);
+
+      const classification = await classifier.classify(text, language);
+      message.classify(classifier.name, classification);
 
       const positiveResults = Object.keys(classification)
         .filter(key => Number(classification[key]));
 
-      if(positiveResults.length)
-        response = getResponseForClassification(language, personality, classification);
+      if(positiveResults.length) {
+        lp = new Language(language, personality);
+        response = lp.response(classification);
+      }
 
     }
     res.setHeader('Content-Type', 'application/json');
-     res.status(200)
+    res.status(200)
       .send((response) ? JSON.stringify({
-          response: response
-      }) :
-        null);
+        response: response,
+        status: 'triggered'
+      }) : {
+        status: 'OK'
+      });
   } catch(err) {
     console.error(err);
     res.status(500)
-      .send(JSON.stringify({
+      .send({
         response: err
-    }));
+      });
   };
 
 });
 
-if (require.main === module) {
-    app.listen(8081);
+if(require.main === module) {
+  app.listen(8081);
 }
 
 exports = module.exports = app;

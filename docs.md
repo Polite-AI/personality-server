@@ -25,6 +25,14 @@ code which should use the Room and Message class abstractions.
 The interface classes automatically push their objects out to
 the database using the methods provided by this class.</p>
 </dd>
+<dt><a href="#Language">Language</a></dt>
+<dd><p>Generate responses in different languages, based on language packs in
+languages/[language].json</p>
+</dd>
+<dt><a href="#Classify">Classify</a></dt>
+<dd><p>Classification engine interface class, allows an engine to be
+selected and handles the mechanics of calling that engine.</p>
+</dd>
 </dl>
 
 <a name="Room"></a>
@@ -341,4 +349,75 @@ Create a new database worker
 | credentials | <code>Object</code> | <code>from_config</code> | Postgres database credentials |
 | MessageClass | [<code>Message</code>](#Message) |  | Class definition to be used when creating messages |
 | RoomClass | [<code>Room</code>](#Room) |  | Class definition to be used when creating rooms |
+
+<a name="Language"></a>
+
+## Language
+Generate responses in different languages, based on language packs in
+languages/[language].json
+
+**Kind**: global class  
+
+* [Language](#Language)
+    * [new Language(language, personality)](#new_Language_new)
+    * [.response(classification)](#Language+response) ⇒ <code>String</code>
+
+<a name="new_Language_new"></a>
+
+### new Language(language, personality)
+Initialises a language outputter based on language and personality required
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| language | <code>String</code> | <code>english</code> | Name of a valid language pack |
+| personality | <code>String</code> | <code>first</code> | Name of a valid personality, defaults to first |
+
+<a name="Language+response"></a>
+
+### language.response(classification) ⇒ <code>String</code>
+Generates a language response for a classification
+
+**Kind**: instance method of [<code>Language</code>](#Language)  
+**Returns**: <code>String</code> - Human output string in this language and personality  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| classification | <code>String</code> | The classification results (currently ignored) |
+
+<a name="Classify"></a>
+
+## Classify
+Classification engine interface class, allows an engine to be
+selected and handles the mechanics of calling that engine.
+
+**Kind**: global class  
+
+* [Classify](#Classify)
+    * [new module.exports.Classify(classifier)](#new_Classify_new)
+    * [.classify(text, lang)](#Classify+classify) ⇒ <code>Promise.&lt;Object&gt;</code>
+
+<a name="new_Classify_new"></a>
+
+### new module.exports.Classify(classifier)
+Create an classifier
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| classifier | <code>String</code> | <code>default</code> | Name of classification engine to use, if not   set then defaults arbitrarily to first available |
+
+<a name="Classify+classify"></a>
+
+### classify.classify(text, lang) ⇒ <code>Promise.&lt;Object&gt;</code>
+Send a text string to the classification server and await results
+
+**Kind**: instance method of [<code>Classify</code>](#Classify)  
+**Returns**: <code>Promise.&lt;Object&gt;</code> - Resolves to the result object or rejects if there
+  are communication problems with the classification server  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| text | <code>String</code> |  | Text to be classified |
+| lang | <code>String</code> | <code>english</code> | The language that the text can be expected to be in |
 

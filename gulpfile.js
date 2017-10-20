@@ -2,7 +2,7 @@ var gulp = require('gulp');
 
 
 var paths = {
-  libs: ['lib/message.js', 'lib/database.js'],
+  libs: ['lib/message.js', 'lib/database.js', 'lib/language.js', 'lib/classify.js'],
   };
 
 // Not all tasks need to use streams

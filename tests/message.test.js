@@ -139,7 +139,7 @@ test('Message class tests', (t) => {
     // 5: Get some rooms
     () => {
 
-      const roomCount = 1;
+      const roomCount = 2;
       //t.comment(`roomCount = ${roomCount}`);
       return Room.getList(messages[0].room.provider)
         .then(rows => {
@@ -192,7 +192,7 @@ test('Message class tests', (t) => {
           return Room.getList(name)
             .then(rooms => {
               //t.comment(`got ${rooms.length} for ${name}`);
-              t.assert(Object.keys(provider).length == rooms.length, `Number of rooms for provider ${Object.keys(provider).length} => ${rooms.length}`);
+              t.assert(Object.keys(provider).length == rooms.length, `Number of rooms for provider ${name} ${Object.keys(provider).length} => ${rooms.length} ${JSON.stringify(rooms, null, 4)}`);
               return rooms.reduce((r, room) => {
                     //t.comment(`building ${room.provider_id}`);
                 return r.then(() => {

@@ -1,6 +1,6 @@
 module.exports = [{
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -11,11 +11,12 @@ module.exports = [{
     classy: [{
       classifier: 'wikidetox',
       classification: '{"aggression": "0", "attack": "1", "toxicity": "0"}"'
-    }]
+  }],
+    triggers: true
   },
   {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -26,8 +27,8 @@ module.exports = [{
   },
   {
     room: {
-      provider: 'matriX',
-      provider_id: '#test:Polite.ai'
+      provider: 'Matrix',
+      provider_id: '#development:polite.ai'
     },
     message: {
       text: 'you may smell a bit old man',
@@ -45,7 +46,7 @@ module.exports = [{
 
     ],
     apps: [{
-        user: '@rob:matrix.org',
+        user: '@rob:Matrix.org',
         type: 'report',
         text: 'this user is very abusive'
       },
@@ -55,16 +56,17 @@ module.exports = [{
         text: 'I don\'t think this is that bad TBH'
       },
       {
-        user: '@rob:matrix.org',
+        user: '@rob:Matrix.org',
         type: 'appeal',
         text: 'this user is very bad \'; DROP DATABASE'
       },
       {
-        user: ';ldfkalksghlwkrlsrgioj;klsgjn;oijrspgoirj;aoiergjsdf;l@rob:matrix.org',
+        user: ';ldfkalksghlwkrlsrgioj;klsgjn;oijrspgoirj;aoiergjsdf;l@rob:Matrix.org',
         type: 'appeal',
         text: 'this user is very abusive'
       },
-    ]
+  ],
+    triggers: true
   },
   {
     room: {
@@ -90,7 +92,7 @@ module.exports = [{
       }
     ],
     apps: [{
-        user: '@rob:doeirmatrix.org',
+        user: '@rob:doeirMatrix.org',
         type: 'report',
         text: 'thil/kms;lasf;s user is very abusive'
       },
@@ -100,21 +102,22 @@ module.exports = [{
         text: 'I don\'t think this is that bad TBH'
       },
       {
-        user: '@rob:matrix.org',
+        user: '@rob:Matrix.org',
         type: 'appeal',
         text: 'this user is very ba DROP DATABASE'
       },
       {
-        user: ';ldfka;sdflkas;dfasdf;laksd;flkasd;fklsdf;l@rob:matrix.org',
+        user: ';ldfka;sdflkas;dfasdf;laksd;flkasd;fklsdf;l@rob:Matrix.org',
         type: 'appeal',
         text: 'this user is very abusive'
       },
-    ]
+  ],
+    triggers: true
 
   },
   {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -125,7 +128,7 @@ module.exports = [{
   },
   {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -136,7 +139,7 @@ module.exports = [{
   },
   {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -147,7 +150,7 @@ module.exports = [{
   },
   {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -158,7 +161,7 @@ module.exports = [{
   },
   {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -169,7 +172,7 @@ module.exports = [{
   },
   {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -179,7 +182,7 @@ module.exports = [{
     },
   }, {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -189,7 +192,7 @@ module.exports = [{
     },
   }, {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -200,7 +203,7 @@ module.exports = [{
   },
   {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {
@@ -212,7 +215,7 @@ module.exports = [{
   },
   {
     room: {
-      provider: 'matrix',
+      provider: 'Matrix',
       provider_id: '#test:polite.ai'
     },
     message: {

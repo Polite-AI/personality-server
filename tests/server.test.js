@@ -10,7 +10,7 @@ const apiVersion = 'v' + package.version.split('.')[0];
 const messages = require('./message-testdata.js');
 
 messages.forEach(message => {
-    test(`/${apiVersion}/message/english/standard`, function (assert) {
+    test(`/${apiVersion}/message/default/english/standard`, function (t) {
       var newMessage = {
           text:message.message.text,
           provider: message.room.provider,
@@ -20,15 +20,16 @@ messages.forEach(message => {
           userId: message.message.user
       }
       request(app)
-        .post(`/${apiVersion}/message/english/standard`)
+        .post(`/${apiVersion}/message/default/english/standard`)
         .send(newMessage)
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function (err, res) {
-          var actualThing = res.body;
-          console.log('actual ', actualThing);
-          assert.error(err, 'No error');
-          assert.end();
+          var act = res.body;
+          //console.log('actual ', act, act.response);
+          t.error(err, 'No error');
+          t.assert((message.triggers && act.response && act.response.length) || (!message.triggers && !act.response), `Correct response: Message.triggers=${message.triggers} and got ${act.response}`);
+          t.end();
         });
     });
 
