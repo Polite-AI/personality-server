@@ -9,10 +9,10 @@ const Classify = require('./lib/classify.js')
   .Classify;
 const Language = require('./lib/language.js')
   .Language;
-const Message = require('./lib/message.js')
-  .Message;
-const Room = require('./lib/message.js')
-  .Room;
+const {
+  Message,
+  Room
+} = require('./lib/message.js');
 
 const app = express();
 
@@ -60,24 +60,27 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
 
       if(positiveResults.length) {
         lp = new Language(language, personality);
-        response = lp.response(classification);
+        response = {
+          response: lp.response(classification),
+          status: 'triggered'
+        }
       }
 
-    }
+    } else
+      response = {
+        status: 'seenBefore'
+      };
     res.setHeader('Content-Type', 'application/json');
     res.status(200)
-      .send((response) ? JSON.stringify({
-        response: response,
-        status: 'triggered'
-      }) : {
+      .send(JSON.stringify((response) ? response : {
         status: 'OK'
-      });
+      }));
   } catch(err) {
     console.error(err);
     res.status(500)
-      .send({
+      .send(JSON.stringify({
         response: err
-      });
+      }));
   };
 
 });

@@ -1,7 +1,4 @@
-const Message = require('../lib/message.js')
-  .Message;
-const Room = require('../lib/message.js')
-  .Room;
+const { Message, Room } = require('../lib/message.js');
 const config = require('../config.js');
 const tape = require('tape')
 const _test = require('tape-promise')

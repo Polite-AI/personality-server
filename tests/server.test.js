@@ -35,6 +35,32 @@ messages.forEach(message => {
 
 })
 
+messages.forEach(message => {
+    test(`/${apiVersion}/message/default/english/standard`, function (t) {
+      var newMessage = {
+          text:message.message.text,
+          provider: message.room.provider,
+          roomId: message.room.provider_id,
+          eventId: message.message.event_id,
+          eventTime: new Date(),
+          userId: message.message.user
+      }
+      request(app)
+        .post(`/${apiVersion}/message/default/english/standard`)
+        .send(newMessage)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function (err, res) {
+          var act = res.body;
+          //console.log('actual ', act, act.response);
+          t.error(err, 'No error');
+          t.assert(act.status && act.status == 'seenBefore', `Response: ${act.status}, wanted seenBefore`);
+          t.end();
+        });
+    });
+
+})
+
 /*
 test('GET /things', function (assert) {
   request(app)
