@@ -29,6 +29,7 @@ messages.forEach(message => {
           //console.log('actual ', act, act.response);
           t.error(err, 'No error');
           t.assert((message.triggers && act.response && act.response.length) || (!message.triggers && !act.response), `Correct response: Message.triggers=${message.triggers} and got ${act.response}`);
+          t.assert(!message.triggers == !act.triggered, `Correct response: Message.triggers=${message.triggers} and got ${JSON.stringify(act, null, 4)}`);
           t.end();
         });
     });
