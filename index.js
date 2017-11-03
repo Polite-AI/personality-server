@@ -38,6 +38,7 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
     } = req.params;
 
     const classifier = new Classify(classifierName);
+    var classification = null;
 
     var message = new Message(text, provider, roomId, eventId, userId, eventTime, {
       allData: true
@@ -45,31 +46,42 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
     const status = await message.status;
     const exists = await message.exists;
 
-    var response = null;
+    // Response onject, triggered is false unless we get a postive classification
+    var response = {
+      triggered: false
+    };
 
+    // new message always succeeds by either reading existing from DB or
+    // injecting as a new one. Can only fail if data is malformed.
     if(!status)
       throw new Error('malformed message')
 
     if(!exists) {
-
-      const classification = await classifier.classify(text, language);
+      // Got new one, classify it
+      classification = await classifier.classify(text, language);
       message.classify(classifier.name, classification);
+      response.status = 'OK';
+    } else {
+      // Already existed, retreive any existing classification
+      if(message.classification && message.classification.length)
+        Object.keys(message.classification)
+        .forEach(c => {
+          if(message.classification[c].classifier == classifier.name)
+            classification = message.classification[c].classification;
+        })
+      response.status = 'seenBefore';
+    }
 
-      const positiveResults = Object.keys(classification)
-        .filter(key => Number(classification[key]));
+    // If we got a positive hit on classification then add response text
+    const positiveResults = Object.keys(classification)
+      .filter(key => Number(classification[key]));
+    if(positiveResults.length) {
+      lp = new Language(language, personality);
+      response.response = lp.response(classification),
+        response.triggered = true;
+    }
 
-      if(positiveResults.length) {
-        lp = new Language(language, personality);
-        response = {
-          response: lp.response(classification),
-          status: 'triggered'
-        }
-      }
-
-    } else
-      response = {
-        status: 'seenBefore'
-      };
+    // Send results
     res.setHeader('Content-Type', 'application/json');
     res.status(200)
       .send(JSON.stringify((response) ? response : {
