@@ -40,11 +40,12 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
     const classifier = new Classify(classifierName);
     var classification = null;
 
-    var message = new Message(text, provider, roomId, eventId, userId, eventTime, {
+    var message = new Message(text, provider, roomId, eventId, userId, new Date(eventTime), {
       allData: true
     })
     const status = await message.status;
     const exists = await message.exists;
+    //console.log ('body', req.body);
 
     // Response onject, triggered is false unless we get a postive classification
     var response = {

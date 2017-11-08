@@ -1,11 +1,16 @@
 # Personality Server
 
-This will serve the bots in an internal API, allowing for bots from other platforms to be very thin layers which 'translate' to this server.
+This server provides an internal REST API, allowing for bots that become very thin layers which 'translate' to this server.
+
+## REST API
+
+[REST API Docs][48471aa0]
 
 ## Library documentation
 [Class Library Documentation][36f6b0c5]
 
   [36f6b0c5]: docs.md "Docs"
+  [48471aa0]: RESTAPI.md "REST API Docs"
 
 ## Installation
 
