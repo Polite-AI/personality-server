@@ -84,6 +84,50 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
 
     // Send results
     res.setHeader('Content-Type', 'application/json');
+    console.log('response: ', response);
+    res.status(200)
+      .send(JSON.stringify((response) ? response : {
+        status: 'OK'
+      }));
+  } catch(err) {
+    console.error(err);
+    res.status(500)
+      .send(JSON.stringify({
+        response: err
+      }));
+  };
+
+});
+
+app.post(`/${apiVersion}/join/:classifier/:language/:personality`, async function (req, res) {
+  try {
+    const {
+      provider,
+      roomId,
+      eventId,
+      userId,
+      eventTime
+    } = req.body;
+    const {
+      classifierName,
+      language,
+      personality
+    } = req.params;
+
+    var room = new Room(roomId, provider)
+    const exists = await room.exists();
+
+    if(!initialised) {
+      response.status = 'OK';
+      response.response = `Polite.ai bot here, thanks for inviting me ${userId}\n` +
+        `Please can you tell me a bit more about this room, for example is it technical, social, work related etc?\n`+
+        `so that I know you are talking to me, please could you preface your reply with polite: or tag me in the response\n`+
+        `e.g. "polite: it is a technical group"`
+    } else {
+      response.status = 'seenBefore';
+    }
+
+    console.log('response: ', response);
     res.status(200)
       .send(JSON.stringify((response) ? response : {
         status: 'OK'
