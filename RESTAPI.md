@@ -31,20 +31,23 @@
 {
     "status": "OK",
     "triggered": false,
-}```
+}
+```
 
 ```json
 {
     "status": "seenBefore",
     "triggered": false,
-}```
+}
+```
 
 ```json
 {
     "status": "OK",
     "triggered": true,
     "response": "hey @user that comment was a little aggressive"
-}```
+}
+```
 
 ## Error Responses
 
