@@ -8,7 +8,7 @@ const test = _test(tape) // decorate tape
 
 const messages = require('./message-testdata.js');
 var m = new Message();
-var r = new Room('fobazbar', '12345688@firblewartog');
+
 
 test('Message class tests', (t) => {
 
@@ -24,27 +24,28 @@ test('Message class tests', (t) => {
 
       // 0 create a room
       () => {
-        return r.exists().then(s => {
-            t.assert(r.room_id > 0, `Room created with ID ${room.room_id}`);
+          var r = new Room('12345688@firblewartog', 'foobazbar');
+        return r.exists.then(s => {
+            t.assert(r.id > 0, `Room created with ID ${r.id}`);
             return true;
           })
-          .catch(err => { t.fail(`$err.error`)})
+          .catch(err => { t.fail(`${err.error}`)})
           .then( () => {
              r.initialised = true;
              r.type = 'technical';
              r.owner = 'rob@fibelwsoe.ksdewrog';
           })
           .then( () => {
-              r2 = new Room('fobazbar', '12345688@firblewartog');
-              r2.exists().then(() => {
-                  t.deepEquals (r, r2, "r == r2");
+              var r2 = new Room('12345688@firblewartog', 'foobazbar');
+              r2.exists.then(() => {
+                  t.deepEqual(r, r2, "r == r2");
               })
           })
       },
     // 1 initialise databse
     () => {
       return m.status.then(s => {
-        return m.exists.then(e => {
+        return m.exists().then(e => {
           t.assert(!e && !s, "Trying to create an empty message sets status, exists (false, false)");
           return true;
         })

@@ -114,7 +114,7 @@ app.post(`/${apiVersion}/join/:classifier/:language/:personality`, async functio
       personality
     } = req.params;
 
-    var room = new Room(roomId, provider)
+    var room = new Room(roomId, provider);
     const exists = await room.exists();
 
     if(!initialised) {

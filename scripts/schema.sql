@@ -11,6 +11,7 @@ DROP SEQUENCE IF EXISTS room_seq;
 DROP SEQUENCE IF EXISTS class_seq;
 DROP SEQUENCE IF EXISTS appeal_seq;
 
+DROP EXTENSION IF EXISTS pgcrypto;
 
 -- Rooms table:
 -- room_id: unique key
@@ -90,5 +91,16 @@ CREATE SEQUENCE class_seq start 100 increment 1 cache 20;
 CREATE SEQUENCE appeal_seq start 100 increment 1 cache 20;
 CREATE SEQUENCE room_seq start 100 increment 1 cache 20;
 
-CREATE EXTENSION pgcrypto;  
+CREATE EXTENSION pgcrypto;
+
+CREATE TABLE schema_updates (
+  update_number INT NOT NULL,
+  description TEXT NOT NULL,
+  CONSTRAINT schema_update_pk PRIMARY KEY(update_number)
+)
+WITHOUT OIDS;
+
+
+
+
 COMMIT;
