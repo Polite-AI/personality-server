@@ -79,7 +79,7 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
         .filter(key => Number(classification[key]));
       if(positiveResults.length) {
         lp = new Language(language, personality);
-        response.response = lp.response(classification),
+        response.response = eval("`"+lp.response(classification)+"`");
           response.triggered = true;
       }
     }
@@ -123,7 +123,7 @@ app.post(`/${apiVersion}/join/:classifier/:language/:personality`, async functio
     if(!exists) {
       response.status = 'OK';
       lp = new Language(language, personality);
-      response.response = lp.response('join');
+      response.response = eval("`"+lp.response('join')+"`");
     } else if(room.initialised)
       response.status = 'initialised';
     else
