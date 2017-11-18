@@ -1,0 +1,7 @@
+{
+  "plugins": ["node_modules/jsdoc-babel"],
+  "babel": {
+    "presets": [ "es2016" ],
+    "plugins": [ "transform-async-to-generator" ]
+  }
+}

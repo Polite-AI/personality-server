@@ -30,6 +30,6 @@ gulp.task('docs', function () {
   const fs = require('fs-then-native')
   const jsdoc2md = require('jsdoc-to-markdown')
 
-  return jsdoc2md.render({ files: paths.libs })
+  return jsdoc2md.render({ files: paths.libs, configure: 'jsdoc.json' })
     .then(output => fs.writeFile('docs.md', output))
 })

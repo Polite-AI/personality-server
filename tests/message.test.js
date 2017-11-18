@@ -1,4 +1,7 @@
-const { Message, Room } = require('../lib/message.js');
+const {
+  Message,
+  Room
+} = require('../lib/message.js');
 const config = require('../config.js');
 const tape = require('tape')
 const _test = require('tape-promise')
@@ -7,7 +10,6 @@ const test = _test(tape) // decorate tape
 // Initial connection
 
 const messages = require('./message-testdata.js');
-var m = new Message();
 
 test('Message class tests', (t) => {
 
@@ -20,13 +22,49 @@ test('Message class tests', (t) => {
    *
    */
   phases = [
+
+    // 0 create a room
+    () => {
+      var r = new Room('12345688@firblewartog', 'foobazbar');
+      return r.exists.then(s => {
+          t.assert(r.id > 0, `Room created with ID ${r.id}`);
+          return Promise.resolve();
+        })
+        .catch(err => {
+          t.fail(`${err.error}`)
+        })
+        .then(() => {
+          r.initialised = true;
+          r.type = 'technical';
+          r.owner = 'rob@fibelwsoe.ksdewrog';
+        })
+        .then(() => {
+          r.updated.then(() => {
+            var r2 = new Room('12345688@firblewartog', 'foobazbar');
+            r2.exists.then(() => {
+                t.deepEqual(r, r2, "r == r2");
+            })
+              .then(r.destroy()
+              .then(() => t.pass('Destroyed room'))
+              .catch(err => t.fail(`destroy should work ${err.message}`)))
+              .then(() => {
+                r2.destroy()
+                  .then(() => t.fail('Room should already be destroyed'))
+                  .catch(err => t.pass('Room already destroyed'));
+              })
+              .catch(err => console.log(err));
+          });
+        })
+    },
     // 1 initialise databse
     () => {
+      var m = new Message();
       return m.status.then(s => {
-        return m.exists.then(e => {
-          t.assert(!e && !s, "Trying to create an empty message sets status, exists (false, false)");
-          return true;
-        })
+        return m.exists
+          .then(e => {
+            t.assert(!e && !s, "Trying to create an empty message sets status, exists (false, false)");
+            return true;
+          })
 
       })
     },
@@ -180,36 +218,38 @@ test('Message class tests', (t) => {
       //t.comment(`providers: ${JSON.stringify(providers, null, 4)}`)
       //console.log('providers: ', providers);
 
-      return Object.keys(providers).reduce((p, name) => {
+      return Object.keys(providers)
+        .reduce((p, name) => {
           var provider = providers[name];
 
           //console.log('building with ', provider);
-        return p.then(() => {
+          return p.then(() => {
             //t.comment(`dealing with ${name}`);
-          return Room.getList(name)
-            .then(rooms => {
-              //t.comment(`got ${rooms.length} for ${name}`);
-              t.assert(Object.keys(provider).length == rooms.length, `Number of rooms for provider ${name} ${Object.keys(provider).length} => ${rooms.length} ${JSON.stringify(rooms, null, 4)}`);
-              return rooms.reduce((r, room) => {
-                    //t.comment(`building ${room.provider_id}`);
-                return r.then(() => {
-                  return room.getMessages({
-                      limit: 9999
-                    })
-                    .then(m => {
-                    //console.log('got message ', m, 'Provider: ', provider, 'Room: ', room);
-                      t.assert(provider[room.provider_id] == m.length, `Number of messages for room ${room.provider_id}: ${provider[room.provider_id]} => ${m.length}`);
-                    })
-                    .catch(err => {
+            return Room.getList(name)
+              .then(rooms => {
+                //t.comment(`got ${rooms.length} for ${name}`);
+                t.assert(Object.keys(provider)
+                  .length == rooms.length, `Number of rooms for provider ${name} ${Object.keys(provider).length} => ${rooms.length} ${JSON.stringify(rooms, null, 4)}`);
+                return rooms.reduce((r, room) => {
+                  //t.comment(`building ${room.provider_id}`);
+                  return r.then(() => {
+                    return room.getMessages({
+                        limit: 9999
+                      })
+                      .then(m => {
+                        //console.log('got message ', m, 'Provider: ', provider, 'Room: ', room);
+                        t.assert(provider[room.provider_id] == m.length, `Number of messages for room ${room.provider_id}: ${provider[room.provider_id]} => ${m.length}`);
+                      })
+                      .catch(err => {
                         //console.log('got err ', err);
 
-                      t.assert(provider[room.provider_id] == 0, `Number of messages for room ${room.provider_id}: 0 {provider[room.provider_id]} => 0 (${err.message})`);
-                    })
-                });
-              }, Promise.resolve(true));
-            })
-        })
-      }, Promise.resolve(true))
+                        t.assert(provider[room.provider_id] == 0, `Number of messages for room ${room.provider_id}: 0 {provider[room.provider_id]} => 0 (${err.message})`);
+                      })
+                  });
+                }, Promise.resolve(true));
+              })
+          })
+        }, Promise.resolve(true))
 
     },
     // 5: Delete all the messages
@@ -252,6 +292,7 @@ test('Message class tests', (t) => {
           return foo.status.then(status => {
               return foo.exists.then(exists => {
                   t.assert(!message.shouldFail && !exists, "Destroyed: Message didn't exist");
+                  t.end();
                 })
                 .catch(err => {
                   t.fail("Shouldn't happen " + err.message)
@@ -276,5 +317,4 @@ test('Message class tests', (t) => {
       return p.then(phase)
     }, Promise.resolve(true))
     .then(t.end());
-
 })

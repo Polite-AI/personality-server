@@ -30,8 +30,8 @@ the database using the methods provided by this class.</p>
 languages/[language].json</p>
 </dd>
 <dt><a href="#Classify">Classify</a></dt>
-<dd><p>Classification engine interface class, allows an engine to be
-selected and handles the mechanics of calling that engine.</p>
+<dd><p>Classification engine interface,
+ select engine and handle mechanics of calling it engine.</p>
 </dd>
 </dl>
 
@@ -54,8 +54,10 @@ identified by its (provider, room_name) tuple.
         * [.provider](#Room+provider) : <code>String</code>
         * [.key](#Room+key) : <code>String</code>
         * [.time](#Room+time) : <code>Date</code>
+        * [.updated](#Room+updated) : <code>Promise.&lt;bool&gt;</code>
         * [.exists](#Room+exists) : <code>Promise.&lt;bool&gt;</code>
         * [.getMessages([flags])](#Room+getMessages) ⇒ <code>Promise.&lt;Array.&lt;Message&gt;&gt;</code>
+        * [.destroy()](#Room+destroy) ⇒ <code>Promise</code>
     * _static_
         * [.getList(provider, [partial_id])](#Room.getList) ⇒ <code>Promise.&lt;Array.&lt;Room&gt;&gt;</code>
 
@@ -107,6 +109,12 @@ of entropy, can be used for secure URLs
 Time/Date that this Room object was created
 
 **Kind**: instance property of [<code>Room</code>](#Room)  
+<a name="Room+updated"></a>
+
+### room.updated : <code>Promise.&lt;bool&gt;</code>
+Outstanding updates complete
+
+**Kind**: instance property of [<code>Room</code>](#Room)  
 <a name="Room+exists"></a>
 
 ### room.exists : <code>Promise.&lt;bool&gt;</code>
@@ -129,6 +137,15 @@ Get a list of Message objects associated with a room
 | flags.limit | <code>number</code> | <code>50</code> | return limited number of records |
 | flags.reverse | <code>bool</code> | <code>false</code> | list returned in most recent first date order |
 
+<a name="Room+destroy"></a>
+
+### room.destroy() ⇒ <code>Promise</code>
+Removes persitent database object associated
+with this Room.
+
+**Kind**: instance method of [<code>Room</code>](#Room)  
+**Returns**: <code>Promise</code> - Resolves or rejects depending on
+  whether the destroy succeeds.  
 <a name="Room.getList"></a>
 
 ### Room.getList(provider, [partial_id]) ⇒ <code>Promise.&lt;Array.&lt;Room&gt;&gt;</code>
@@ -382,20 +399,23 @@ Initialises a language outputter based on language and personality required
 <a name="Language+response"></a>
 
 ### language.response(classification) ⇒ <code>String</code>
-Generates a language response for a classification
+Generates a language response for a classification or dialog. Returns the first matching
+phrase from the langauage pack which is in the set of topic objects. If the language pack
+contains an array of possible responses for the topic then one is returned at random and if
+there is no specific response then the default tag is used.
 
 **Kind**: instance method of [<code>Language</code>](#Language)  
 **Returns**: <code>String</code> - Human output string in this language and personality  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| classification | <code>String</code> | The classification results (currently ignored) |
+| classification | <code>\*</code> | If a string then the dialog type, otherwise an object with named properties that are matched to language responses if they are true. |
 
 <a name="Classify"></a>
 
 ## Classify
-Classification engine interface class, allows an engine to be
-selected and handles the mechanics of calling that engine.
+Classification engine interface,
+ select engine and handle mechanics of calling it engine.
 
 **Kind**: global class  
 

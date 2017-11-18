@@ -1,19 +1,28 @@
 {
-    "standard": [
-        "Spread Love, Not Hate",
-        "Chill, Bro... We're all friends here"
-    ],
-    "father-ted": [
-        "Down with this sort of thing, careful now!",
-        "Now come on, what would you say to a nice cup of tea?",
-        "The language, unbelievable!",
-        "Oh, dreadful language!",
-        "How dare you say that! You must apologise immediately.",
-        "Now, that was impolite"
-    ],
-    "hippie": [
-        "Duuuude, chill out man",
-        "That's not rad man...",
-        "Chillax dude, all you need in life is the beach and a surf board."
+  "standard": {
+    "join": "Polite.ai bot here, thanks for inviting me ${userId} Please can you tell me a bit more about this room, for example is it technical, social, work related etc? So that I know you are talking to me,please could you preface your reply with polite : or tag me in the response e.g.\"polite: it is a technical group\"",
+    "agression": "That comment seems to me a little agressive ${userId}",
+    "toxicity": "That comment troubles me ${userId} - it seems like it may be a little toxic or negative",
+    "attack": "Please try to avoid using langauge that could be perceived as a personal attack ${userId}",
+    "inviteAppeal": "(do tell me if I'm wrong)"
+  },
+  "father-ted": {
+    "join": "Polite.ai bot here in Father Ted mode. Thanks for inviting me ${userId}. Please can you tell me a bit more about this room, for example is it technical, social,work related etc? So that I know you are talking to me, please could you preface your reply with polite : or tag me in the response e.g.\"polite: it is a technical group\"",
+    "default": [
+      "Down with this sort of thing, careful now ${userId}!",
+      "Now come on ${userId}, what would you say to a nice cup of tea?",
+      "The language ${userId}, unbelievable!",
+      "Oh, dreadful language ${userId}!",
+      "How dare you say that ${userId}! You must apologise immediately.",
+      "Now, that was impolite ${userId}"
     ]
+  },
+  "hippie": {
+    "join": "Polite.ai bot here in Hippie mode. Thanks for inviting me ${userId} dude. What's the vibe in this room, is it, like, technical, social, work? So that I know you are talking to me, please could you preface your reply with polite : or tag me in the response e.g.\"polite: it is a technical group\"",
+    "default": [
+      "${userId} Duuuude, chill out man",
+      "That's not rad man...",
+      "Chillax ${userId} dude, all you need in life is the beach and a surf board."
+    ]
+  }
 }

@@ -11,6 +11,7 @@ DROP SEQUENCE IF EXISTS room_seq;
 DROP SEQUENCE IF EXISTS class_seq;
 DROP SEQUENCE IF EXISTS appeal_seq;
 
+DROP EXTENSION IF EXISTS pgcrypto;
 
 -- Rooms table:
 -- room_id: unique key
@@ -24,6 +25,9 @@ CREATE TABLE rooms (
     room_id BIGINT UNIQUE DEFAULT nextval('room_seq'::text),
 	  provider TEXT NOT NULL,
     provider_id TEXT NOT NULL,
+    initialised TEXT,
+    owner TEXT,
+    type TEXT,
     key TEXT,
 	  time TIMESTAMP
 );
@@ -44,7 +48,7 @@ CREATE TABLE messages (
     message_id BIGINT UNIQUE DEFAULT nextval('message_seq'::text),
 	  message TEXT NOT NULL,
     provider TEXT NOT NULL,
-    room_id BIGINT NOT NULL references rooms(room_id),
+    room_id BIGINT NOT NULL references rooms(room_id) ON DELETE CASCADE,
     user_id TEXT,
 	  event_id TEXT,
 	  time TIMESTAMP
@@ -60,7 +64,7 @@ CREATE TABLE messages (
 
 CREATE TABLE classification (
     class_id BIGINT UNIQUE DEFAULT nextval('class_seq'::text),
-    message_id BIGINT NOT NULL references messages(message_id),
+    message_id BIGINT NOT NULL references messages(message_id) ON DELETE CASCADE,
     classifier TEXT,
     classification TEXT,
     time TIMESTAMP
@@ -76,7 +80,7 @@ CREATE TABLE classification (
 
 CREATE TABLE appeals (
   appeal_id BIGINT UNIQUE DEFAULT nextval('appeal_seq'::text),
-  message_id BIGINT NOT NULL references messages(message_id),
+  message_id BIGINT NOT NULL references messages(message_id) ON DELETE CASCADE,
   user_id TEXT,
   type TEXT NOT NULL,
   comment TEXT NOT NULL,
@@ -90,5 +94,16 @@ CREATE SEQUENCE class_seq start 100 increment 1 cache 20;
 CREATE SEQUENCE appeal_seq start 100 increment 1 cache 20;
 CREATE SEQUENCE room_seq start 100 increment 1 cache 20;
 
-CREATE EXTENSION pgcrypto;  
+CREATE EXTENSION pgcrypto;
+
+CREATE TABLE schema_updates (
+  update_number INT NOT NULL,
+  description TEXT NOT NULL,
+  CONSTRAINT schema_update_pk PRIMARY KEY(update_number)
+)
+WITHOUT OIDS;
+
+
+
+
 COMMIT;

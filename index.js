@@ -55,12 +55,12 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
     // new message always succeeds by either reading existing from DB or
     // injecting as a new one. Can only fail if data is malformed.
     if(!status)
-      throw new Error('malformed message')
+      response.status = 'Error';
 
     if(!exists) {
       // Got new one, classify it
       classification = await classifier.classify(text, language);
-      message.classify(classifier.name, classification);
+      await message.classify(classifier.name, classification);
       response.status = 'OK';
     } else {
       // Already existed, retreive any existing classification
@@ -74,12 +74,14 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
     }
 
     // If we got a positive hit on classification then add response text
-    const positiveResults = Object.keys(classification)
-      .filter(key => Number(classification[key]));
-    if(positiveResults.length) {
-      lp = new Language(language, personality);
-      response.response = lp.response(classification),
-        response.triggered = true;
+    if(classification) {
+      const positiveResults = Object.keys(classification)
+        .filter(key => Number(classification[key]));
+      if(positiveResults.length) {
+        lp = new Language(language, personality);
+        response.response = eval("`"+lp.response(classification)+"`");
+          response.triggered = true;
+      }
     }
 
     // Send results
@@ -88,8 +90,99 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
       .send(JSON.stringify((response) ? response : {
         status: 'OK'
       }));
+
   } catch(err) {
     console.error(err);
+    res.status(500)
+      .send(JSON.stringify({
+        response: err.message
+      }));
+  }
+
+});
+
+app.post(`/${apiVersion}/join/:classifier/:language/:personality`, async function (req, res) {
+  try {
+    const {
+      provider,
+      roomId,
+      eventId,
+      userId,
+      eventTime
+    } = req.body;
+    const {
+      classifierName,
+      language,
+      personality
+    } = req.params;
+
+    var room = new Room(roomId, provider);
+    const exists = await room.exists;
+    var response = {};
+
+    if(!exists) {
+      response.status = 'OK';
+      lp = new Language(language, personality);
+      response.response = eval("`"+lp.response('join')+"`");
+    } else if(room.initialised)
+      response.status = 'initialised';
+    else
+      response.status = 'seenBefore';
+
+    //console.log('response: ', response);
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200)
+      .send(JSON.stringify((response) ? response : {
+        status: 'OK'
+      }));
+  } catch(err) {
+    //console.error(err);
+    res.status(500)
+      .send(JSON.stringify({
+        response: err
+      }));
+  };
+
+});
+
+app.post(`/${apiVersion}/delete`, async function (req, res) {
+  try {
+    const {
+      provider,
+      roomId,
+      eventId,
+    } = req.body;
+
+    var thing;
+    if(roomId != null)
+      thing = new Room(roomId, provider);
+    else if(eventId != null)
+      thing = new Message({
+        provider,
+        event_id: eventId
+      });
+    else
+      throw new Error('Must specify a roomId or eventId');
+
+    if(await thing.exists) {
+      await thing.destroy();
+      status = 'OK';
+    } else {
+      await thing.destroy();
+      status = 'notExist';
+    }
+    const response = {
+      status
+    };
+
+    //console.log('response: ', response);
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200)
+      .send(JSON.stringify((response) ? response : {
+        status: 'OK'
+      }));
+  } catch(err) {
+    //console.error(err);
     res.status(500)
       .send(JSON.stringify({
         response: err
