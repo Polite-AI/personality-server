@@ -79,7 +79,7 @@ app.post(`/${apiVersion}/message/:classifier/:language/:personality`, async func
         .filter(key => Number(classification[key]));
       if(positiveResults.length) {
         lp = new Language(language, personality);
-        response.response = eval("`"+lp.response(classification)+"`");
+        response.response = eval(`\`${lp.response(classification)} ${lp.response('inviteAppeal')}\``);
           response.triggered = true;
       }
     }
