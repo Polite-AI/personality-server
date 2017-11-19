@@ -1,7 +1,7 @@
 {
   "standard": {
     "join": "Polite.ai bot here, thanks for inviting me ${userId} Please can you tell me a bit more about this room, for example is it technical, social, work related etc? So that I know you are talking to me,please could you preface your reply with polite : or tag me in the response e.g.\"polite: it is a technical group\"",
-    "agression": "That comment seems to me a little agressive ${userId}",
+    "aggression": "That comment seems to me a little aggressive ${userId}",
     "toxicity": "That comment troubles me ${userId} - it seems like it may be a little toxic or negative",
     "attack": "Please try to avoid using langauge that could be perceived as a personal attack ${userId}",
     "inviteAppeal": "(do tell me if I'm wrong)"
