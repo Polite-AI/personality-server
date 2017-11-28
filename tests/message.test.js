@@ -42,6 +42,9 @@ test('Message class tests', (t) => {
           r.updated.then(() => {
             var r2 = new Room('12345688@firblewartog', 'foobazbar');
             r2.exists.then(() => {
+                // This property may upset deepEqual test
+                delete r2.updated;
+                delete r.updated;
                 t.deepEqual(r, r2, "r == r2");
             })
               .then(r.destroy()

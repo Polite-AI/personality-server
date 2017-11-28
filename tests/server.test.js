@@ -97,6 +97,7 @@ messages.forEach(message => {
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function (err, res) {
+
         var act = res.body;
         //console.log('actual ', act, act.response);
         t.error(err, 'No error');
