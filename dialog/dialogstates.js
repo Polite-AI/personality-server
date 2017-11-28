@@ -31,6 +31,9 @@ const dialogStates = {
         heardReport: {
           to: 'confirmSimpleReport',
           emit: 'confirmSimpleReport'
+        },
+        smalltalk: {
+          to: 'main'
         }
 
       }
@@ -40,8 +43,8 @@ const dialogStates = {
         "confirmRoomType": {
           to: 'main',
           emit: 'confirmedRoomType',
-          run: function (env) {
-            env.room.type = env.dialog.roomType;
+          exec: function (emit) {
+            this.room.type = this.dialog.roomType;
           }
         },
         "rejectRoomType": {
@@ -55,8 +58,8 @@ const dialogStates = {
         confirmChallenge: {
           to: 'main',
           emit: 'confirmedChallenge',
-          run: function (env) {
-            env.message.appeal(env.userId, 'appeal', env.dialog.challengeText);
+          exec: function (env) {
+            this.message.appeal(this.userId, 'appeal', this.dialog.challengeText);
           }
         },
         rejectChallenge: {
@@ -70,8 +73,8 @@ const dialogStates = {
         confirmReport: {
           to: 'main',
           emit: 'confirmedReport',
-          run: function (env) {
-            env.message.appeal(env.userId, 'report', env.dialog.appealText);
+          exec: function (env) {
+            this.message.appeal(this.userId, 'report', this.dialog.appealText);
           }
         },
         rejectReport: {

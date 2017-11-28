@@ -9,6 +9,7 @@ digraph "Polite.AI bot room dialogue states" {
   "main" -> "confirmRoomType" [ label="Action: heardRoomType\nSay: confirmRoomType"]
   "main" -> "confirmSimpleChallenge" [ label="Action: heardChallenge\nSay: confirmSimpleChallenge"]
   "main" -> "confirmSimpleReport" [ label="Action: heardReport\nSay: confirmSimpleReport"]
+  "main" -> "main" [ label="Action: smalltalk"]
   "confirmRoomType" -> "main" [ label="Action: confirmRoomType\nSay: confirmedRoomType"]
   "confirmRoomType" -> "main" [ label="Action: rejectRoomType\nSay: rejectedRoomType"]
   "confirmSimpleChallenge" -> "main" [ label="Action: confirmChallenge\nSay: confirmedChallenge"]

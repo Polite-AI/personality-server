@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Polite-AI/personality-server#readme",
   "dependencies": {
+    "apiai": "4.0.3",
     "body-parser": "1.18.2",
     "express": "4.16.1",
     "gulp": "3.9.1",
@@ -31,6 +32,8 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-es2016": "6.24.1",
     "fs": "0.0.1-security",
+    "graphviz2svg": "0.2.0",
+    "gulp-shell": "0.6.3",
     "jsdoc-babel": "0.3.0",
     "jsdoc-to-markdown": "3.0.1",
     "path": "0.12.7",

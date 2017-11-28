@@ -7,54 +7,8 @@ const package = require('../package.json');
 const config = require('../config.js');
 const apiVersion = 'v' + package.version.split('.')[0];
 
-const messages = require('./message-testdata.js');
-const rooms = [{
-    room: {
-      provider: 'moodlE',
-      roomId: '1234364484@foobar',
-      eventId: '127361387@foobar5',
-      userId: '@rob:foobar'
-    },
-    exists: false
-  },
-  {
-    room: {
-      provider: 'moodlE',
-      roomId: '1234364484@foobar',
-      eventId: '127361387@foobar5',
-      userId: '@jim:foobar'
-    },
-    exists: true
-  },
-  {
-    room: {
-      provider: 'mOOdlE',
-      roomId: '1234364484@foobar',
-      eventId: '127361387@foobar5',
-      userId: '@rob:foobar'
-    },
-    exists: false
-  },
-  {
-    room: {
-      provider: 'moodlE',
-      roomId: '1234364484@foobar',
-      eventId: '127361387@foobar5',
-      userId: '@rob:foobar'
-    },
-    exists: true
-  },
-  {
-    room: {
-      provider: 'moodlE',
-      eventId: '127361387@foobar5',
-      userId: '@rob:foobar'
-    },
-    exists: false,
-    error: true
-  }
+const { messages, rooms } = require('./message-testdata.js');
 
-];
 
 var deleteMe = [];
 

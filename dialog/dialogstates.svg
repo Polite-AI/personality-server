@@ -37,6 +37,13 @@
 <text text-anchor="middle" x="798.2906" y="-170.8" font-family="Times,serif" font-size="14.00" fill="#000000">Action: reJoinRoom</text>
 <text text-anchor="middle" x="798.2906" y="-156.8" font-family="Times,serif" font-size="14.00" fill="#000000">Say: rejoin</text>
 </g>
+<!-- main&#45;&gt;main -->
+<g id="edge6" class="edge">
+<title>main&#45;&gt;main</title>
+<path fill="none" stroke="#000000" d="M720.3522,-127.1461C731.91,-128.2753 742.1127,-125.2266 742.1127,-118 742.1127,-113.0317 737.2903,-110.0382 730.5206,-109.0193"/>
+<polygon fill="#000000" stroke="#000000" points="730.4078,-105.5171 720.3522,-108.8539 730.2939,-112.5162 730.4078,-105.5171"/>
+<text text-anchor="middle" x="790.5214" y="-113.8" font-family="Times,serif" font-size="14.00" fill="#000000">Action: smalltalk</text>
+</g>
 <!-- confirmRoomType -->
 <g id="node3" class="node">
 <title>confirmRoomType</title>
@@ -80,7 +87,7 @@
 <text text-anchor="middle" x="1098.1802" y="-56.8" font-family="Times,serif" font-size="14.00" fill="#000000">Say: confirmSimpleReport</text>
 </g>
 <!-- confirmRoomType&#45;&gt;main -->
-<g id="edge6" class="edge">
+<g id="edge7" class="edge">
 <title>confirmRoomType&#45;&gt;main</title>
 <path fill="none" stroke="#000000" d="M163.6433,-36.1875C160.4033,-50.5376 158.9496,-70.063 170.2627,-82 187.0344,-99.6965 540.3041,-112.8735 658.3176,-116.7953"/>
 <polygon fill="#000000" stroke="#000000" points="658.2347,-120.2944 668.3444,-117.125 658.4648,-113.2982 658.2347,-120.2944"/>
@@ -88,7 +95,7 @@
 <text text-anchor="middle" x="245.8536" y="-56.8" font-family="Times,serif" font-size="14.00" fill="#000000">Say: confirmedRoomType</text>
 </g>
 <!-- confirmRoomType&#45;&gt;main -->
-<g id="edge7" class="edge">
+<g id="edge8" class="edge">
 <title>confirmRoomType&#45;&gt;main</title>
 <path fill="none" stroke="#000000" d="M235.3403,-27.3412C262.8232,-32.812 294.5082,-41.2423 321.3233,-54 339.7567,-62.77 338.7801,-74.414 357.7315,-82 411.5886,-103.5584 581.8846,-113.2207 658.4215,-116.5559"/>
 <polygon fill="#000000" stroke="#000000" points="658.4381,-120.0597 668.577,-116.9851 658.7338,-113.0659 658.4381,-120.0597"/>
@@ -96,7 +103,7 @@
 <text text-anchor="middle" x="427.6192" y="-56.8" font-family="Times,serif" font-size="14.00" fill="#000000">Say: rejectedRoomType</text>
 </g>
 <!-- confirmSimpleChallenge&#45;&gt;main -->
-<g id="edge8" class="edge">
+<g id="edge9" class="edge">
 <title>confirmSimpleChallenge&#45;&gt;main</title>
 <path fill="none" stroke="#000000" d="M696.3233,-36.2253C696.3233,-51.134 696.3233,-72.4782 696.3233,-89.6219"/>
 <polygon fill="#000000" stroke="#000000" points="692.8234,-89.6584 696.3233,-99.6585 699.8234,-89.6585 692.8234,-89.6584"/>
@@ -104,7 +111,7 @@
 <text text-anchor="middle" x="769.2251" y="-56.8" font-family="Times,serif" font-size="14.00" fill="#000000">Say: confirmedChallenge</text>
 </g>
 <!-- confirmSimpleChallenge&#45;&gt;main -->
-<g id="edge9" class="edge">
+<g id="edge10" class="edge">
 <title>confirmSimpleChallenge&#45;&gt;main</title>
 <path fill="none" stroke="#000000" d="M779.8466,-27.6613C824.683,-36.3763 866.4337,-52.5469 843.3233,-82 829.9603,-99.0305 772.8989,-109.052 733.9286,-114.0316"/>
 <polygon fill="#000000" stroke="#000000" points="733.4615,-110.5625 723.9587,-115.2472 734.3088,-117.5111 733.4615,-110.5625"/>
@@ -112,7 +119,7 @@
 <text text-anchor="middle" x="916.9908" y="-56.8" font-family="Times,serif" font-size="14.00" fill="#000000">Say: rejectedChallenge</text>
 </g>
 <!-- confirmSimpleReport&#45;&gt;main -->
-<g id="edge10" class="edge">
+<g id="edge11" class="edge">
 <title>confirmSimpleReport&#45;&gt;main</title>
 <path fill="none" stroke="#000000" d="M1193.3057,-36.2908C1191.4276,-51.1068 1186.272,-71.228 1172.3233,-82 1137.9654,-108.5331 840.9951,-115.7491 734.297,-117.4947"/>
 <polygon fill="#000000" stroke="#000000" points="734.2316,-113.9952 724.2877,-117.6514 734.3413,-120.9944 734.2316,-113.9952"/>
@@ -120,7 +127,7 @@
 <text text-anchor="middle" x="1252.8975" y="-56.8" font-family="Times,serif" font-size="14.00" fill="#000000">Say: confirmedReport</text>
 </g>
 <!-- confirmSimpleReport&#45;&gt;main -->
-<g id="edge11" class="edge">
+<g id="edge12" class="edge">
 <title>confirmSimpleReport&#45;&gt;main</title>
 <path fill="none" stroke="#000000" d="M1261.101,-29.5436C1287.1258,-35.5213 1312.5827,-43.7381 1320.3233,-54 1327.8173,-63.935 1328.8657,-72.9506 1320.3233,-82 1300.1299,-103.392 866.3033,-114.3759 734.1755,-117.2335"/>
 <polygon fill="#000000" stroke="#000000" points="734.0421,-113.7354 724.119,-117.4478 734.1913,-120.7338 734.0421,-113.7354"/>

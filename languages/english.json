@@ -1,13 +1,15 @@
 {
   "standard": {
-    "join": "Polite.ai bot here, thanks for inviting me ${userId} Please can you tell me a bit more about this room, for example is it technical, social, work related etc? So that I know you are talking to me,please could you preface your reply with polite : or tag me in the response e.g.\"polite: it is a technical group\"",
+    "join": "Polite.ai bot here, thanks for inviting me ${userId}\nPlease can you tell me a bit more about this room, for example are the discussions technical, social, work related or political?",
+    "rejoin": "Polite.ai bot here, thanks for inviting me ${userId}, I have a feeling of deja-vu as I have been here before!\nIn order to interact with me, for eaxmple to flag toxicity I don't notice or tell me I have got things wrong, please tag me like this:\n${botName}: I disagree with you",
     "aggression": "That comment seems to me a little aggressive ${userId}",
     "toxicity": "That comment troubles me ${userId} - it seems like it may be a little toxic or negative",
     "attack": "Please try to avoid using langauge that could be perceived as a personal attack ${userId}",
     "inviteAppeal": "(do tell me if I'm wrong by tagging me in a reply)"
   },
   "father-ted": {
-    "join": "Polite.ai bot here in Father Ted mode. Thanks for inviting me ${userId}. Please can you tell me a bit more about this room, for example is it technical, social,work related etc? So that I know you are talking to me, please could you preface your reply with polite : or tag me in the response e.g.\"polite: it is a technical group\"",
+    "join": "Polite.ai bot here, thanks for inviting me ${userId}\nPlease can you tell me a bit more about this room, for example are the discussions technical, social, work related or political?",
+    "rejoin": "Polite.ai bot here, thanks for inviting me ${userId}, I have a feeling of deja-vu as I have been here before!\nIn order to interact with me, for eaxmple to flag toxicity I don't notice or tell me I have got things wrong, please tag me like this:\n${botName}: I disagree with you",
     "default": [
       "Down with this sort of thing, careful now ${userId}!",
       "Now come on ${userId}, what would you say to a nice cup of tea?",
@@ -19,7 +21,8 @@
     "inviteAppeal": "(do tell me if I'm wrong by tagging me in a reply)"
   },
   "hippie": {
-    "join": "Polite.ai bot here in Hippie mode. Thanks for inviting me ${userId} dude. What's the vibe in this room, is it, like, technical, social, work? So that I know you are talking to me, please could you preface your reply with polite : or tag me in the response e.g.\"polite: it is a technical group\"",
+    "join": "Polite.ai bot here, thanks for inviting me ${userId}\nPlease can you tell me a bit more about this room, for example are the discussions technical, social, work related or political?",
+    "rejoin": "Polite.ai bot here, thanks for inviting me ${userId}, I have a feeling of deja-vu as I have been here before!\nIn order to interact with me, for eaxmple to flag toxicity I don't notice or tell me I have got things wrong, please tag me like this:\n${botName}: I disagree with you",
     "default": [
       "${userId} Duuuude, chill out man",
       "That's not rad man...",
