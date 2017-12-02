@@ -1,6 +1,6 @@
 {
   "id": "fd87f790-3762-4fba-a2cc-cd9496c325fb",
-  "name": "Reject flag",
+  "name": "Reject Report",
   "auto": true,
   "contexts": [
     "confirmSimpleReport"
@@ -9,7 +9,7 @@
     {
       "resetContexts": false,
       "affectedContexts": [
-  
+
       ],
       "parameters": [],
       "messages": [

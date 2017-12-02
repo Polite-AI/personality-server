@@ -1,8 +1,6 @@
 {
   "id": "36f6c263-a0f1-4aeb-ad84-504abea89ac0",
-  "parentId": "1fc5f7f1-0f6c-41ac-8e9b-be2ed2dfb7f1",
-  "rootParentId": "1fc5f7f1-0f6c-41ac-8e9b-be2ed2dfb7f1",
-  "name": "Appeal - yes",
+  "name": "Challenge",
   "auto": true,
   "contexts": [
     "confirmSimpleChallenge"

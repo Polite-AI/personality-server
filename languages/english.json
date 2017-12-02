@@ -5,7 +5,17 @@
     "aggression": "That comment seems to me a little aggressive ${userId}",
     "toxicity": "That comment troubles me ${userId} - it seems like it may be a little toxic or negative",
     "attack": "Please try to avoid using langauge that could be perceived as a personal attack ${userId}",
-    "inviteAppeal": "(do tell me if I'm wrong by tagging me in a reply)"
+    "inviteAppeal": "(do tell me if I'm wrong by tagging me in a reply)",
+    "confirmRoomType": "Could you confirm that I should set the room type to ${roomtype}",
+    "confirmSimpleChallenge": "${userId} are you objecting to my comment on the message \"{$challengeMessage}\" by ${challengeUser}?",
+    "confirmSimpleReport": "${userId} do you want to flag the message \"{$reportMessage}\" by ${reportUser}?",
+    "confirmedRoomType": "OK, I've saved the room type $roomtype. Thank You.",
+    "rejectedRoomType": "OK, not setting that room type",
+    "confirmedChallenge": "OK, lodging an appeal against my last comment for you.  Multiple humans will now review my last classification and your response and the results will be used to further train my engine. You won\u0027t notice the results straight away as this isn\u0027t a realtime process but please do rest assured that your help is very much appreciated.",
+    "rejectedChallenge": "OK, I'm not going to record your comments against this message",
+    "confirmedReport": "Thank you, your generous feedback helps me get better!",
+    "rejectedReport": "OK, I'm not going to report that message then",
+    "agreeThanks": "Thank you ${userId}, your generous feedback helps me get better!"
   },
   "father-ted": {
     "join": "Polite.ai bot here, thanks for inviting me ${userId}\nPlease can you tell me a bit more about this room, for example are the discussions technical, social, work related or political?",
@@ -19,6 +29,7 @@
       "Now, that was impolite ${userId}"
     ],
     "inviteAppeal": "(do tell me if I'm wrong by tagging me in a reply)"
+
   },
   "hippie": {
     "join": "Polite.ai bot here, thanks for inviting me ${userId}\nPlease can you tell me a bit more about this room, for example are the discussions technical, social, work related or political?",

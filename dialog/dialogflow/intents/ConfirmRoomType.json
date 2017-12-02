@@ -1,29 +1,17 @@
 {
   "id": "dfb2126e-244a-447d-b383-8ba402f7e5d9",
-  "parentId": "39c41889-e58e-4a0d-bb86-884693907946",
-  "rootParentId": "39c41889-e58e-4a0d-bb86-884693907946",
-  "name": "Roomtype - no",
+  "name": "ConfirmRoomType",
   "auto": true,
   "contexts": [
-    "Roomtype-followup"
+    "confirmRoomType"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "action": "Roomtype.Roomtype-no",
+      "action": "confirmRoomType",
       "affectedContexts": [],
       "parameters": [],
       "messages": [
-        {
-          "type": 0,
-          "lang": "en",
-          "speech": "OK, not setting the room type for you then!"
-        },
-        {
-          "type": 0,
-          "lang": "en",
-          "speech": []
-        }
       ],
       "defaultResponsePlatforms": {},
       "speech": []

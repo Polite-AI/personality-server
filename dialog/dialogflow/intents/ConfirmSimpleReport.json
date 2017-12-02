@@ -1,6 +1,6 @@
 {
   "id": "afe12762-4431-47f7-89e2-36bbc60f7d42",
-  "name": "Confirm Report yes",
+  "name": "ConfirmSimpleReport",
   "auto": true,
   "contexts": [
     "confirmSimpleReport"
