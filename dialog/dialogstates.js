@@ -32,6 +32,10 @@ const dialogStates = {
           to: 'confirmSimpleReport',
           emit: 'confirmSimpleReport'
         },
+        agree: {
+          to: 'main',
+          emit: 'agreeThanks'
+        },
         smalltalk: {
           to: 'main'
         }

@@ -1,0 +1,45 @@
+{
+  "id": "cb3d4de5-1fbb-461f-a773-be2be323c08d",
+  "name": "I appreciate you",
+  "auto": true,
+  "contexts": [
+    "main"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "main",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "debe81e0-d4bc-475a-a992-7150592a48ce",
+          "required": false,
+          "dataType": "@Correct",
+          "name": "Correct",
+          "value": "$Correct",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Thank you, your generous feedback helps me get better!"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511291090,
+  "fallbackIntent": false,
+  "events": []
+}

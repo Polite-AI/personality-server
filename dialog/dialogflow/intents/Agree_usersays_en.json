@@ -1,0 +1,76 @@
+[
+  {
+    "id": "0a2d6309-7cf2-4f8e-9aae-0b2e75f20bb0",
+    "data": [
+      {
+        "text": "I ",
+        "userDefined": false
+      },
+      {
+        "text": "appreciate",
+        "alias": "Correct",
+        "meta": "@Correct",
+        "userDefined": false
+      },
+      {
+        "text": " you",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511291090
+  },
+  {
+    "id": "4077a25c-2b9d-4ebe-bf77-79a33e3d14ba",
+    "data": [
+      {
+        "text": "I concur",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511291090
+  },
+  {
+    "id": "77261d0f-250e-4657-8263-0f3ae1049e06",
+    "data": [
+      {
+        "text": "I ",
+        "userDefined": false
+      },
+      {
+        "text": "support",
+        "alias": "Correct",
+        "meta": "@Correct",
+        "userDefined": false
+      },
+      {
+        "text": " you",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511291090
+  },
+  {
+    "id": "ebb42c8b-4193-49d4-b79c-3c6bfc9ecfac",
+    "data": [
+      {
+        "text": "I ",
+        "userDefined": false
+      },
+      {
+        "text": "agree",
+        "alias": "Correct",
+        "meta": "@Correct",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511291090
+  }
+]

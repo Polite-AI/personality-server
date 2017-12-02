@@ -1,0 +1,162 @@
+[
+  {
+    "id": "5307633c-5ce5-4336-842c-c304e3d61e86",
+    "data": [
+      {
+        "text": " you are ",
+        "userDefined": false
+      },
+      {
+        "text": "wrong",
+        "alias": "Disagree",
+        "meta": "@Disagree",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "feb6e5e8-28fa-4cfa-88e8-1a6c3eb207b9",
+    "data": [
+      {
+        "text": " you are ",
+        "userDefined": false
+      },
+      {
+        "text": "wrong",
+        "alias": "Disagree",
+        "meta": "@Disagree",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8fdabc02-728f-4bfd-8fdf-c10ecab2e076",
+    "data": [
+      {
+        "text": "you are ",
+        "userDefined": false
+      },
+      {
+        "text": "wrong",
+        "alias": "Disagree",
+        "meta": "@Disagree",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "id": "05a85d94-17c0-443e-8571-59a1389f5d14",
+    "data": [
+      {
+        "text": "i ",
+        "userDefined": false
+      },
+      {
+        "text": "think you are wrong",
+        "alias": "Disagree",
+        "meta": "@Disagree",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "cd3ff4e7-1ede-47b0-8e13-1fba6b67a002",
+    "data": [
+      {
+        "text": "i think you are wonrg",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "3a9fcc5f-1bd1-430f-9cf8-8cadf4e686b6",
+    "data": [
+      {
+        "text": "you re ",
+        "userDefined": false
+      },
+      {
+        "text": "wrong",
+        "alias": "Disagree",
+        "meta": "@Disagree",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "95a64f79-eebf-4e10-82f1-eeae886ad71d",
+    "data": [
+      {
+        "text": "I ",
+        "userDefined": false
+      },
+      {
+        "text": "disagree",
+        "alias": "description",
+        "meta": "@description",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "9a1022e4-c5aa-4c83-91ce-f1177d6f7071",
+    "data": [
+      {
+        "text": "that ",
+        "userDefined": false
+      },
+      {
+        "text": "message",
+        "alias": "message",
+        "meta": "@message",
+        "userDefined": false
+      },
+      {
+        "text": " isn\u0027t ",
+        "userDefined": false
+      },
+      {
+        "text": "aggressive",
+        "alias": "description",
+        "meta": "@description",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "cf395f74-7bcc-431b-83ef-3c7f8d933e33",
+    "data": [
+      {
+        "text": "it isn\u0027t ",
+        "userDefined": false
+      },
+      {
+        "text": "aggressive",
+        "alias": "description",
+        "meta": "@description",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511289712
+  }
+]

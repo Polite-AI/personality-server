@@ -1,0 +1,48 @@
+[
+  {
+    "value": "toxic",
+    "synonyms": [
+      "toxic",
+      "negative",
+      "unhelpful",
+      "counterproductive"
+    ]
+  },
+  {
+    "value": "agressive",
+    "synonyms": [
+      "aggressive",
+      "over the top",
+      "unwarranted",
+      "over reaction",
+      "aggression",
+      "aggresive",
+      "aggressive",
+      "Aggression"
+    ]
+  },
+  {
+    "value": "attack",
+    "synonyms": [
+      "attack",
+      "ad-hominem"
+    ]
+  },
+  {
+    "value": "undermine",
+    "synonyms": [
+      "undermine",
+      "undermining",
+      "talking down",
+      "talked down"
+    ]
+  },
+  {
+    "value": "constructive",
+    "synonyms": [
+      "constructive",
+      "positive",
+      "helpful"
+    ]
+  }
+]

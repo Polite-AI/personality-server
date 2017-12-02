@@ -1,0 +1,43 @@
+{
+  "id": "36f6c263-a0f1-4aeb-ad84-504abea89ac0",
+  "parentId": "1fc5f7f1-0f6c-41ac-8e9b-be2ed2dfb7f1",
+  "rootParentId": "1fc5f7f1-0f6c-41ac-8e9b-be2ed2dfb7f1",
+  "name": "Appeal - yes",
+  "auto": true,
+  "contexts": [
+    "confirmSimpleChallenge"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "confirmChalenge",
+      "affectedContexts": [
+      ],
+      "parameters": [
+        {
+          "id": "b2680ee3-1bed-48bf-8425-0fe283cdfe22",
+          "required": false,
+          "name": "messageText",
+          "value": "$messageText",
+          "isList": false
+        },
+        {
+          "id": "e0daf0f1-000e-459e-99f7-19f583892761",
+          "required": false,
+          "name": "user",
+          "value": "$user",
+          "isList": false
+        }
+      ],
+      "messages": [  ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1508189124771,
+  "fallbackIntent": false,
+  "events": []
+}

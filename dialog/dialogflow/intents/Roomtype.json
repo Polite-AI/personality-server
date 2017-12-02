@@ -1,0 +1,41 @@
+{
+  "id": "39c41889-e58e-4a0d-bb86-884693907946",
+  "name": "Roomtype",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "heardRoomType",
+        "parameters": [
+        {
+          "id": "1c1210b3-5f00-498f-868a-4d7dbaac9b03",
+          "required": false,
+          "dataType": "@roomtype",
+          "name": "roomtype",
+          "value": "$roomtype",
+          "prompts": [],
+          "isList": false
+        },
+        {
+          "id": "e211c336-b26f-470d-8d39-bc0e9d538f9e",
+          "required": false,
+          "dataType": "@room",
+          "name": "room",
+          "value": "$room",
+          "isList": false
+        }
+      ],
+      "messages": [    
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511264714,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,183 @@
+[
+  {
+    "id": "072f0979-88d2-4411-973f-bbddf9c8b128",
+    "data": [
+      {
+        "text": "it\u0027s @roomtype:",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "id": "ef4c66af-f310-4855-99ab-89a62bb8277c",
+    "data": [
+      {
+        "text": "it is @roomtype",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": true,
+    "count": 0
+  },
+  {
+    "id": "3a935dd9-1f3d-4ac9-8d13-995a3913d729",
+    "data": [
+      {
+        "text": "it is ",
+        "userDefined": false
+      },
+      {
+        "text": "technical",
+        "alias": "roomtype",
+        "meta": "@roomtype",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "3c691627-24a8-41c6-9192-74ef5cf0a311",
+    "data": [
+      {
+        "text": "the ",
+        "userDefined": false
+      },
+      {
+        "text": "room",
+        "alias": "room",
+        "meta": "@room",
+        "userDefined": false
+      },
+      {
+        "text": " is ",
+        "userDefined": false
+      },
+      {
+        "text": "technical",
+        "alias": "roomtype",
+        "meta": "@roomtype",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "cca1ef59-ecac-4b4b-b881-d036958bc850",
+    "data": [
+      {
+        "text": "political",
+        "alias": "roomtype",
+        "meta": "@roomtype",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "110e3fb8-05f2-464c-95cb-0ec341233997",
+    "data": [
+      {
+        "text": "@roomtyoe",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": true,
+    "count": 0
+  },
+  {
+    "id": "f3a4d107-ece3-4e6e-8389-bd84461c51e0",
+    "data": [
+      {
+        "text": "it is ",
+        "userDefined": false
+      },
+      {
+        "text": "civic",
+        "alias": "roomtype",
+        "meta": "@roomtype",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "8f3b6c6d-77d4-492e-9e92-5e631baecd61",
+    "data": [
+      {
+        "text": "it is ",
+        "userDefined": false
+      },
+      {
+        "text": "political",
+        "alias": "roomtype",
+        "meta": "@roomtype",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "dc7109d0-0201-479a-bf22-0d850341ce95",
+    "data": [
+      {
+        "text": "it is ",
+        "userDefined": false
+      },
+      {
+        "text": "social",
+        "alias": "roomtype",
+        "meta": "@roomtype",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "id": "d12f51ab-835e-40b8-8a70-47bc30a819c6",
+    "data": [
+      {
+        "text": "it is ",
+        "userDefined": false
+      },
+      {
+        "text": "professional",
+        "alias": "roomtype",
+        "meta": "@roomtype",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1
+  },
+  {
+    "id": "ea3b1bfb-890c-4103-a13c-0388b5aac743",
+    "data": [
+      {
+        "text": "room",
+        "alias": "room",
+        "meta": "@room",
+        "userDefined": false
+      },
+      {
+        "text": " is ",
+        "userDefined": false
+      },
+      {
+        "text": "technical",
+        "alias": "roomtype",
+        "meta": "@roomtype",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]
