@@ -1,0 +1,45 @@
+{
+  "id": "afe12762-4431-47f7-89e2-36bbc60f7d42",
+  "name": "ConfirmSimpleReport",
+  "auto": true,
+  "contexts": [
+    "confirmSimpleReport"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "confirmSimpleReport",
+      "affectedContexts": [
+
+      ],
+      "parameters": [
+        {
+          "id": "d09d2205-1028-41ab-a852-3b4e9d6db99a",
+          "required": false,
+          "dataType": "@Correct",
+          "name": "Correct",
+          "value": "$Correct",
+          "isList": false
+        },
+        {
+          "id": "f3f4b747-c42e-424a-b66b-0ef753076f8a",
+          "required": false,
+          "name": "MessageId",
+          "value": "$MessageId",
+          "isList": false
+        }
+      ],
+      "messages": [
+
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511606796,
+  "fallbackIntent": false,
+  "events": []
+}

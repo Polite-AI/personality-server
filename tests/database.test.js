@@ -7,7 +7,7 @@ const _test = require('tape-promise')
 const test = _test(tape) // decorate tape
 // Initial connection
 
-const messages = require('./message-testdata.js');
+const { messages } = require('./message-testdata.js');
 
 //console.log('messages: ', messages)
 

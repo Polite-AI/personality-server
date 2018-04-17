@@ -1,0 +1,12 @@
+digraph "Snowman State Transitions" {
+  "snow" [color=red];
+  "snowman";
+  "water";
+  "clouds";
+  "snow" -> "snowman" [ label="Action: build\nSay: lets build a snowman"]
+  "snow" -> "water" [ label="Action: melt\nSay: oh no, it melted too quickly"]
+  "snowman" -> "water" [ label="Action: melt\nSay: help, I'm melting"]
+  "water" -> "clouds" [ label="Action: evaporate\nSay: it's very warm today"]
+  "clouds" -> "snow" [ label="Action: snowing\nSay: hey it's snowing"]
+
+}

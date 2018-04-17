@@ -1,0 +1,137 @@
+[
+  {
+    "id": "9861e3f7-a8e8-4294-b972-f8554311a45c",
+    "data": [
+      {
+        "text": "last ",
+        "userDefined": false
+      },
+      {
+        "text": "message",
+        "alias": "message",
+        "meta": "@message",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "unhelpful",
+        "alias": "description",
+        "meta": "@description",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "19baf834-ce65-4ede-9691-03f20a6ea4e3",
+    "data": [
+      {
+        "text": "last ",
+        "userDefined": false
+      },
+      {
+        "text": "message",
+        "alias": "message",
+        "meta": "@message",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "negative",
+        "alias": "description",
+        "meta": "@description",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "8e9217d9-b971-4080-9d60-a38a3dd0ecc7",
+    "data": [
+      {
+        "text": "last ",
+        "userDefined": false
+      },
+      {
+        "text": "message",
+        "alias": "message",
+        "meta": "@message",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "toxic",
+        "alias": "description",
+        "meta": "@description",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "74a4bf84-c968-4d43-94ce-e26ded5e640c",
+    "data": [
+      {
+        "text": "last ",
+        "userDefined": false
+      },
+      {
+        "text": "message",
+        "alias": "message",
+        "meta": "@message",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "aggressive",
+        "alias": "description",
+        "meta": "@description",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "3ad99e58-36ad-4172-a2e7-0df4e67a976f",
+    "data": [
+      {
+        "text": "that last ",
+        "userDefined": false
+      },
+      {
+        "text": "message",
+        "alias": "message",
+        "meta": "@message",
+        "userDefined": false
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "aggressive",
+        "alias": "description",
+        "meta": "@description",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

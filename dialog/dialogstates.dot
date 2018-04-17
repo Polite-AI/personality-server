@@ -1,0 +1,21 @@
+digraph "Polite.AI bot room dialogue states" {
+  "start" [color=red];
+  "main";
+  "confirmRoomType";
+  "confirmSimpleChallenge";
+  "confirmSimpleReport";
+  "start" -> "main" [ label="Action: joinRoom\nSay: join"]
+  "start" -> "main" [ label="Action: reJoinRoom\nSay: rejoin"]
+  "main" -> "confirmRoomType" [ label="Action: heardRoomType\nSay: confirmRoomType"]
+  "main" -> "confirmSimpleChallenge" [ label="Action: heardChallenge\nSay: confirmSimpleChallenge"]
+  "main" -> "confirmSimpleReport" [ label="Action: heardReport\nSay: confirmSimpleReport"]
+  "main" -> "main" [ label="Action: agree\nSay: agreeThanks"]
+  "main" -> "main" [ label="Action: smalltalk"]
+  "confirmRoomType" -> "main" [ label="Action: confirmRoomType\nSay: confirmedRoomType"]
+  "confirmRoomType" -> "main" [ label="Action: rejectRoomType\nSay: rejectedRoomType"]
+  "confirmSimpleChallenge" -> "main" [ label="Action: confirmChallenge\nSay: confirmedChallenge"]
+  "confirmSimpleChallenge" -> "main" [ label="Action: rejectChallenge\nSay: rejectedChallenge"]
+  "confirmSimpleReport" -> "main" [ label="Action: confirmReport\nSay: confirmedReport"]
+  "confirmSimpleReport" -> "main" [ label="Action: rejectReport\nSay: rejectedReport"]
+
+}

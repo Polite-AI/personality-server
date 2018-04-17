@@ -1,0 +1,38 @@
+{
+  "id": "f12c164b-7fad-4e4b-aa1a-8e0b80243a23",
+  "name": "Report",
+  "auto": true,
+  "contexts": [ "main" ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "1789dba4-11cf-421d-83d1-30fea1286375",
+          "dataType": "@message",
+          "name": "message",
+          "value": "$message",
+          "isList": false
+        },
+        {
+          "id": "77f732a5-3fe0-4003-99a0-93139a48b63e",
+          "dataType": "@description",
+          "name": "description",
+          "value": "$description",
+          "isList": false
+        }
+      ],
+      "messages": [    
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511291152,
+  "fallbackIntent": false,
+  "events": []
+}

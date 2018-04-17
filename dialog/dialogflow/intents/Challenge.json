@@ -1,0 +1,65 @@
+{
+  "id": "1fc5f7f1-0f6c-41ac-8e9b-be2ed2dfb7f1",
+  "name": "Challenge",
+  "auto": true,
+  "contexts": [
+    "main"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "heardChallenge",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "4fbfb190-f746-4c0a-b553-96c1963b7d32",
+          "required": false,
+          "dataType": "@description",
+          "name": "description",
+          "value": "$description",
+          "isList": false
+        },
+        {
+          "id": "b35da293-91a1-4810-837e-4d96a7ec3f48",
+          "required": false,
+          "dataType": "@message",
+          "name": "message",
+          "value": "$message",
+          "isList": false
+        },
+        {
+          "id": "aa09d1b4-2b0e-4c05-9f16-d412f65d4951",
+          "required": false,
+          "dataType": "@Disagree",
+          "name": "Disagree",
+          "value": "$Disagree",
+          "isList": false
+        },
+        {
+          "id": "65aae8a3-e1dc-44bb-9272-40aeccfebdcf",
+          "required": false,
+          "name": "username",
+          "value": "#lastchallenge.user",
+          "isList": false
+        },
+        {
+          "id": "937903d1-fac7-4113-a321-9f0f49c59138",
+          "required": false,
+          "name": "text",
+          "value": "#lastchallenge.messageText",
+          "isList": false
+        }
+      ],
+      "messages": [
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 1000000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511289712,
+  "fallbackIntent": false,
+  "events": []
+}

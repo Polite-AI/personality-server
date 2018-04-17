@@ -1,0 +1,26 @@
+{
+  "id": "dfb2126e-244a-447d-b383-8ba402f7e5d9",
+  "name": "ConfirmRoomType",
+  "auto": true,
+  "contexts": [
+    "confirmRoomType"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "confirmRoomType",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1508189124745,
+  "fallbackIntent": false,
+  "events": []
+}

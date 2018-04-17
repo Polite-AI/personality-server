@@ -1,0 +1,38 @@
+[
+  {
+    "value": "technical",
+    "synonyms": [
+      "technical",
+      "engineering",
+      "software",
+      "development"
+    ]
+  },
+  {
+    "value": "social",
+    "synonyms": [
+      "social",
+      "family",
+      "club",
+      "members club",
+      "membership"
+    ]
+  },
+  {
+    "value": "political",
+    "synonyms": [
+      "political",
+      "change",
+      "civic",
+      "society"
+    ]
+  },
+  {
+    "value": "work",
+    "synonyms": [
+      "work",
+      "professional",
+      "job"
+    ]
+  }
+]

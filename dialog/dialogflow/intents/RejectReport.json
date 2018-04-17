@@ -1,0 +1,32 @@
+{
+  "id": "fd87f790-3762-4fba-a2cc-cd9496c325fb",
+  "name": "Reject Report",
+  "auto": true,
+  "contexts": [
+    "confirmSimpleReport"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511606930,
+  "fallbackIntent": false,
+  "events": []
+}

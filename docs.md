@@ -1,6 +1,10 @@
 ## Classes
 
 <dl>
+<dt><a href="#Processor">Processor</a></dt>
+<dd><p>Room and message processor. Handles the mechanics of classifying and responding
+to messages, including bot to person interactions.</p>
+</dd>
 <dt><a href="#Room">Room</a></dt>
 <dd><p>Representation of a chat room which acts as a container
 for messages. Each chat system room that we have ever seen
@@ -12,6 +16,10 @@ identified by its (provider, room_name) tuple.</p>
 <dd><p>Representation of a chat message in any system.
 Messages are associated with Rooms and may have
 Classifications and Appeals logged against them.</p>
+</dd>
+<dt><a href="#StateMachine">StateMachine</a></dt>
+<dd><p>Statemachine class with emphasis on quick initialisation, lightweight
+state storage, and easy state visualisation.</p>
 </dd>
 <dt><a href="#Database">Database</a></dt>
 <dd><p>Implements a SQL based store for all Polite.ai applications
@@ -31,9 +39,87 @@ languages/[language].json</p>
 </dd>
 <dt><a href="#Classify">Classify</a></dt>
 <dd><p>Classification engine interface,
- select engine and handle mechanics of calling it engine.</p>
+ select engine and handle mechanics of calling it.</p>
 </dd>
 </dl>
+
+<a name="Processor"></a>
+
+## Processor
+Room and message processor. Handles the mechanics of classifying and responding
+to messages, including bot to person interactions.
+
+**Kind**: global class  
+
+* [Processor](#Processor)
+    * [new Processor()](#new_Processor_new)
+    * [.message(text, provider, roomId, eventId, userId, timestamp, classifierName, language, personality)](#Processor+message) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.dialogue(text, provider, roomId, eventId, userId, timestamp, classifierName, language, personality)](#Processor+dialogue) ⇒ <code>Promise.&lt;Object&gt;</code>
+    * [.join(provider, roomId, eventId, userId, botName, classifierName, language, personality)](#Processor+join) ⇒ <code>Promise.&lt;Object&gt;</code>
+
+<a name="new_Processor_new"></a>
+
+### new Processor()
+Constructor
+
+<a name="Processor+message"></a>
+
+### processor.message(text, provider, roomId, eventId, userId, timestamp, classifierName, language, personality) ⇒ <code>Promise.&lt;Object&gt;</code>
+Handle a chat room message between users, detect anything we should be detecting
+and return a response to inject back into the room if appropriate.
+
+**Kind**: instance method of [<code>Processor</code>](#Processor)  
+**Returns**: <code>Promise.&lt;Object&gt;</code> - Resolves to object with properties status:, triggered and response:  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| text | <code>String</code> | message text |
+| provider | <code>String</code> |  |
+| roomId | <code>String</code> |  |
+| eventId | <code>String</code> |  |
+| userId | <code>String</code> |  |
+| timestamp | <code>String</code> |  |
+| classifierName | <code>String</code> |  |
+| language | <code>String</code> |  |
+| personality | <code>String</code> |  |
+
+<a name="Processor+dialogue"></a>
+
+### processor.dialogue(text, provider, roomId, eventId, userId, timestamp, classifierName, language, personality) ⇒ <code>Promise.&lt;Object&gt;</code>
+Conduct a dialogue with the bot
+
+**Kind**: instance method of [<code>Processor</code>](#Processor)  
+**Returns**: <code>Promise.&lt;Object&gt;</code> - Resolves to object with properties status: and response: text  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| text | <code>String</code> | message text |
+| provider | <code>String</code> |  |
+| roomId | <code>String</code> |  |
+| eventId | <code>String</code> |  |
+| userId | <code>String</code> |  |
+| timestamp | <code>String</code> |  |
+| classifierName | <code>String</code> |  |
+| language | <code>String</code> |  |
+| personality | <code>String</code> |  |
+
+<a name="Processor+join"></a>
+
+### processor.join(provider, roomId, eventId, userId, botName, classifierName, language, personality) ⇒ <code>Promise.&lt;Object&gt;</code>
+Process a join request
+
+**Kind**: instance method of [<code>Processor</code>](#Processor)  
+
+| Param | Type |
+| --- | --- |
+| provider | <code>String</code> | 
+| roomId | <code>String</code> | 
+| eventId | <code>String</code> | 
+| userId | <code>String</code> | 
+| botName | <code>String</code> | 
+| classifierName | <code>String</code> | 
+| language | <code>String</code> | 
+| personality | <code>String</code> | 
 
 <a name="Room"></a>
 
@@ -52,6 +138,10 @@ identified by its (provider, room_name) tuple.
         * [.id](#Room+id) : <code>String</code>
         * [.provider_id](#Room+provider_id) : <code>String</code>
         * [.provider](#Room+provider) : <code>String</code>
+        * [.initialised](#Room+initialised) : <code>bool</code>
+        * [.type](#Room+type) : <code>String</code>
+        * [.owner](#Room+owner) : <code>String</code>
+        * [.dialogState](#Room+dialogState) : <code>String</code>
         * [.key](#Room+key) : <code>String</code>
         * [.time](#Room+time) : <code>Date</code>
         * [.updated](#Room+updated) : <code>Promise.&lt;bool&gt;</code>
@@ -94,6 +184,35 @@ Room name
 
 ### room.provider : <code>String</code>
 Provider namespace
+
+**Kind**: instance property of [<code>Room</code>](#Room)  
+<a name="Room+initialised"></a>
+
+### room.initialised : <code>bool</code>
+Is this room initialised with all data (owner, type etc)
+
+**Kind**: instance property of [<code>Room</code>](#Room)  
+<a name="Room+type"></a>
+
+### room.type : <code>String</code>
+Type of discussion that can nbe expected in this room:
+ technical, social, political, business, strategy etc
+At some point there will be a taxonomy of these things, but
+ for now self description by the owner
+
+**Kind**: instance property of [<code>Room</code>](#Room)  
+<a name="Room+owner"></a>
+
+### room.owner : <code>String</code>
+Who seems to own this room?
+(userId of person that invited us generally)
+
+**Kind**: instance property of [<code>Room</code>](#Room)  
+<a name="Room+dialogState"></a>
+
+### room.dialogState : <code>String</code>
+Current state of Dialogue StateMachine for bot conversation
+in this room
 
 **Kind**: instance property of [<code>Room</code>](#Room)  
 <a name="Room+key"></a>
@@ -339,6 +458,84 @@ Classification and Appeal objects
 **Kind**: instance method of [<code>Message</code>](#Message)  
 **Returns**: <code>Promise</code> - Resolves or rejects depending on
   whether the destroy succeeds.  
+<a name="StateMachine"></a>
+
+## StateMachine
+Statemachine class with emphasis on quick initialisation, lightweight
+state storage, and easy state visualisation.
+
+**Kind**: global class  
+
+* [StateMachine](#StateMachine)
+    * [new StateMachine(states, env, initial)](#new_StateMachine_new)
+    * [.validTransition(action)](#StateMachine+validTransition) ⇒ <code>Object</code>
+    * [.action(name)](#StateMachine+action) ⇒ <code>String</code>
+    * [.describe()](#StateMachine+describe) ⇒ <code>String</code>
+
+<a name="new_StateMachine_new"></a>
+
+### new StateMachine(states, env, initial)
+Create a statemachine instance
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| states | <code>Object</code> |  | State machine definition |
+| env | <code>Object</code> | <code>none</code> | The environment available to any exec functions |
+| initial | <code>String</code> | <code>from-definition</code> | Name of initial state |
+
+<a name="StateMachine+validTransition"></a>
+
+### stateMachine.validTransition(action) ⇒ <code>Object</code>
+Get a transition from current state to new state based on Action (if valid)
+
+**Kind**: instance method of [<code>StateMachine</code>](#StateMachine)  
+**Returns**: <code>Object</code> - Transition object (null if not a valid action in this state)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| action | <code>String</code> | Name of action |
+
+<a name="StateMachine+action"></a>
+
+### stateMachine.action(name) ⇒ <code>String</code>
+Apply an action to cause a transition
+
+**Kind**: instance method of [<code>StateMachine</code>](#StateMachine)  
+**Returns**: <code>String</code> - The 'emit' string for this action (or return from exec
+function if this exists)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>String</code> | Action name |
+
+<a name="StateMachine+describe"></a>
+
+### stateMachine.describe() ⇒ <code>String</code>
+Get a GraphViz compatible digraph description of this
+state machine.
+
+**Kind**: instance method of [<code>StateMachine</code>](#StateMachine)  
+**Returns**: <code>String</code> - Text of GraphViz Description  
+**Example**  
+```js
+foo = new StateMachine(snowmanDefinition)
+console.log(foo.describe());
+
+
+Outputs:
+digraph "Snowman State Transitions" {
+   "snow" [color=red];
+   "snowman";
+   "water";
+   "clouds";
+   "snow" -> "snowman" [ label="Action: build\nSay: lets build a snowman"]
+   "snow" -> "water" [ label="Action: melt\nSay: oh no, it melted too quickly"]
+   "snowman" -> "water" [ label="Action: melt\nSay: help, I'm melting"]
+   "water" -> "clouds" [ label="Action: evaporate\nSay: it's very warm today"]
+   "clouds" -> "snow" [ label="Action: snowing\nSay: hey it's snowing"]
+}
+```
 <a name="Database"></a>
 
 ## Database
@@ -415,7 +612,7 @@ there is no specific response then the default tag is used.
 
 ## Classify
 Classification engine interface,
- select engine and handle mechanics of calling it engine.
+ select engine and handle mechanics of calling it.
 
 **Kind**: global class  
 
